@@ -115,7 +115,7 @@ blocks:
       - image: visualcue/6 data base - data source - excel.jpg
         alt: Connecting a data source inside the product, from a database or a spreadsheet
         caption: A data source could be connected and configured directly through the interface.
-      - image: visualcue/7. Prepare  Selecionar campos, tratar dados, transformar estrutura.jpg
+      - image: visualcue/7. fields tipes.jpg
         alt: Mapping fields, types and keys in the preparation interface
         caption: Fields, types, and keys could be mapped as part of the configuration process.
       - image: visualcue/8 Making data work simpler.jpg

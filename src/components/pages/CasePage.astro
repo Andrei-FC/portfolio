@@ -27,6 +27,7 @@ const metaFields = [
 const figures = import.meta.glob<{ default: ImageMetadata }>("/src/assets/cases/**/*.{png,jpg,jpeg,webp,avif}");
 const figure = async (path?: string) => {
   const loader = path ? figures[`/src/assets/cases/${path}`] : undefined;
+  if (path && !loader) throw new Error(`CasePage: no file at src/assets/cases/${path}`);
   return loader ? (await loader()).default : null;
 };
 

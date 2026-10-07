@@ -17,6 +17,7 @@ const tr = t(locale);
 const files = import.meta.glob<{ default: ImageMetadata }>("/src/assets/cases/**/*.{png,jpg,jpeg,webp,avif}");
 const key = cover?.image ? `/src/assets/cases/${cover.image}` : null;
 const loader = key ? files[key] : undefined;
+if (key && !loader) throw new Error(`ProjectCard: no file at src/assets/cases/${cover?.image}`);
 const asset = loader ? (await loader()).default : null;
 ---
 <!-- The card carries the case accent so the media slot reads as that case

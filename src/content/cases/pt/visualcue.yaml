@@ -119,7 +119,7 @@ blocks:
       - image: visualcue/6 data base - data source - excel.jpg
         alt: Conexão de uma fonte de dados direto pela interface do produto
         caption: Uma fonte de dados podia ser conectada e configurada direto pela interface.
-      - image: visualcue/7. Prepare  Selecionar campos, tratar dados, transformar estrutura.jpg
+      - image: visualcue/7. fields tipes.jpg
         alt: Mapeamento de campos, tipos e chaves na configuração
         caption: Campos, tipos e chaves podiam ser mapeados como parte do processo de configuração.
       - image: visualcue/8 Making data work simpler.jpg

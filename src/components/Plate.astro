@@ -16,6 +16,9 @@ const tr = t(locale);
 const files = import.meta.glob<{ default: ImageMetadata }>("/src/assets/cases/**/*.{png,jpg,jpeg,webp,avif}");
 const key = image ? `/src/assets/cases/${image}` : null;
 const loader = key ? files[key] : undefined;
+// No image at all is a plate still waiting for one. A named image that does
+// not resolve is a typo, and silently drawing the placeholder hides it.
+if (key && !loader) throw new Error(`Plate: no file at src/assets/cases/${image}`);
 const asset = loader ? (await loader()).default : null;
 ---
 <figure class="plate">
