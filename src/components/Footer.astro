@@ -22,10 +22,12 @@ const EMAIL = "andreicarvalho@icloud.com";
       )}
     </div>
     <div class="site-footer__bottom">
+      <!-- The two that leave the site open in their own tab. mailto hands off to
+           the mail client, so a new tab there would just be left behind empty. -->
       <ul class="site-footer__links">
-        <li><a class="t-label" href="https://www.linkedin.com/in/andreicarvalho" rel="me">LinkedIn</a></li>
+        <li><a class="t-label" href="https://www.linkedin.com/in/andrei-carvalho-3a562a25/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
         <li><a class="t-label" href={`mailto:${EMAIL}`}>Email</a></li>
-        <li><a class="t-label" href="https://wa.me/5511982642063" rel="me noopener">{tr("footer.message")}</a></li>
+        <li><a class="t-label" href="https://wa.me/5511982642063" target="_blank" rel="me noopener noreferrer">{tr("footer.message")}</a></li>
       </ul>
       <span class="t-caption muted">{tr("footer.rights")}</span>
     </div>

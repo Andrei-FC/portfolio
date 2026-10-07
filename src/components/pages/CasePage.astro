@@ -173,7 +173,7 @@ for (const block of d.blocks) {
           {block.source && (
             <div class="case-source stack stack--tight">
               <span class="t-label eyebrow">{tr("case.source")}</span>
-              <a class="t-body-m accent" href={block.source.href ?? `https://${block.source.url}`} rel="noopener">
+              <a class="t-body-m accent" href={block.source.href ?? `https://${block.source.url}`} target="_blank" rel="noopener noreferrer">
                 {block.source.citation}
               </a>
               <span class="t-caption muted">{block.source.url}</span>
