@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Chevron from "./icons/Chevron.astro";
-import { t, type Locale } from "../i18n/ui";
+import { localePath, t, type Locale } from "../i18n/ui";
 
 interface Props { locale: Locale; inverse?: boolean }
 const { locale, inverse = false } = Astro.props;
@@ -13,11 +13,11 @@ const cases = (await getCollection("cases", (e) => e.id.startsWith(`${locale}/`)
 // Read the current page off the URL rather than threading it through every
 // page: the menu needs the open case's slug, not just a section name.
 const path = Astro.url.pathname;
-const home = `/${locale}/`;
-const about = `/${locale}/about/`;
+const home = localePath(locale);
+const about = localePath(locale, "/about/");
 const isHome = path === home;
 const isAbout = path.startsWith(about);
-const openCase = cases.find((c) => path.startsWith(`/${locale}/work/${c.data.slug}/`))?.data.slug;
+const openCase = cases.find((c) => path.startsWith(localePath(locale, `/work/${c.data.slug}/`)))?.data.slug;
 ---
 <header class:list={["site-header", inverse && "site-header--inverse"]}>
   <div class="site-header__inner">
@@ -39,7 +39,7 @@ const openCase = cases.find((c) => path.startsWith(`/${locale}/work/${c.data.slu
           {cases.map((c) => (
             <a
               class="menu-link"
-              href={`/${locale}/work/${c.data.slug}/`}
+              href={localePath(locale, `/work/${c.data.slug}/`)}
               aria-current={c.data.slug === openCase ? "page" : undefined}
             >
               <span class="t-body-m">{c.data.cardTitle}</span>
@@ -71,7 +71,7 @@ const openCase = cases.find((c) => path.startsWith(`/${locale}/work/${c.data.slu
     {cases.map((c) => (
       <a
         class="menu-link"
-        href={`/${locale}/work/${c.data.slug}/`}
+        href={localePath(locale, `/work/${c.data.slug}/`)}
         aria-current={c.data.slug === openCase ? "page" : undefined}
       >
         <span class="t-body-m">{c.data.cardTitle}</span>

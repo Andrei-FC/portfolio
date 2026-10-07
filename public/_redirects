@@ -1,0 +1,4 @@
+# English moved from /en/* to the root. A real 301 at the edge, so nothing
+# depends on an HTML page to do the forwarding.
+/en/*  /:splat  301
+/en    /        301

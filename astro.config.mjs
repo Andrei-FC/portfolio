@@ -5,7 +5,9 @@ export default defineConfig({
   i18n: {
     locales: ["en", "pt"],
     defaultLocale: "en",
-    routing: { prefixDefaultLocale: true, redirectToDefaultLocale: true }
+    // English at the root, Portuguese under /pt/. No redirect page at /,
+    // which in a static build is a 2-second meta refresh.
+    routing: { prefixDefaultLocale: false }
   },
   build: { format: "directory" }
 });

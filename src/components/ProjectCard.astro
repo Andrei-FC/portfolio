@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { t, type Locale } from "../i18n/ui";
+import { localePath, t, type Locale } from "../i18n/ui";
 
 interface Props {
   locale: Locale;
@@ -21,7 +21,7 @@ const asset = loader ? (await loader()).default : null;
 ---
 <!-- The card carries the case accent so the media slot reads as that case
      before its screenshot exists, exactly as the Figma placeholder does. -->
-<a class="card" href={`/${locale}/work/${slug}/`} data-accent={accent}>
+<a class="card" href={localePath(locale, `/work/${slug}/`)} data-accent={accent}>
   {asset
     ? <Image class="card__media" src={asset} alt={cover?.alt || ""} widths={[390, 640, 840, 1248]} sizes="(max-width: 760px) 100vw, 624px" />
     : <div class="card__media card__media--empty"></div>}

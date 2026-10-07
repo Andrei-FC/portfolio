@@ -3,7 +3,7 @@ import "../styles/base.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Lightbox from "../components/Lightbox.astro";
-import { otherLocale, type Locale } from "../i18n/ui";
+import { localePath, otherLocale, type Locale } from "../i18n/ui";
 
 interface Props {
   locale: Locale;
@@ -23,9 +23,10 @@ const other = otherLocale(locale);
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-    <link rel="alternate" hreflang={locale} href={new URL(`/${locale}${path}`, Astro.site)} />
-    <link rel="alternate" hreflang={other} href={new URL(`/${other}${path}`, Astro.site)} />
-    <link rel="alternate" hreflang="x-default" href={new URL(`/en${path}`, Astro.site)} />
+    <link rel="canonical" href={new URL(localePath(locale, path), Astro.site)} />
+    <link rel="alternate" hreflang={locale} href={new URL(localePath(locale, path), Astro.site)} />
+    <link rel="alternate" hreflang={other} href={new URL(localePath(other, path), Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(localePath("en", path), Astro.site)} />
   </head>
   <body>
     <Header locale={locale} inverse={inverseHeader} />

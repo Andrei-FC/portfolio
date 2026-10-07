@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import CasePage from "../../../components/pages/CasePage.astro";
+import CasePage from "../../components/pages/CasePage.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("cases", (e) => e.id.startsWith("en/"));

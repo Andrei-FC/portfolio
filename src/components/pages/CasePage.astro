@@ -6,7 +6,7 @@ import Base from "../../layouts/Base.astro";
 import Plate from "../Plate.astro";
 import CaseTable from "../CaseTable.astro";
 import ProjectCard from "../ProjectCard.astro";
-import { t, type Locale } from "../../i18n/ui";
+import { localePath, t, type Locale } from "../../i18n/ui";
 
 interface Props { locale: Locale; entry: CollectionEntry<"cases"> }
 const { locale, entry } = Astro.props;
@@ -48,7 +48,7 @@ for (const block of d.blocks) {
   <section class="band--tight">
     <div class="container stack stack--group">
       <p class="t-label muted">
-        <a href={`/${locale}/`}>{tr("nav.work")}</a> / <span class="accent">{d.org}</span>
+        <a href={localePath(locale)}>{tr("nav.work")}</a> / <span class="accent">{d.org}</span>
       </p>
       <div class="grid">
         <div class="wide stack stack--element">

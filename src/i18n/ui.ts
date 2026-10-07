@@ -70,3 +70,10 @@ export function t(locale: Locale) {
 export function otherLocale(locale: Locale): Locale {
   return locale === "en" ? "pt" : "en";
 }
+
+/* The default locale lives at the root and the other one is prefixed. Keeping
+   that in one place is what lets / be the English home itself rather than a
+   page that redirects to it. */
+export function localePath(locale: Locale, path = "/"): string {
+  return locale === defaultLocale ? path : `/${locale}${path}`;
+}
