@@ -1,10 +1,8 @@
-import { existsSync } from "node:fs";
-import { join } from "node:path";
+/* The CV link, in the footer and on the about page. Both are marked
+   "remover até o dia 0" in the Figma file.
 
-/* The CV link is wired in two places — the footer and the about page — and both
-   are marked "remover até o dia 0" in the Figma file. Rather than a flag to
-   remember, the link follows the file: drop the PDF in public/ and it appears
-   on both pages at the next build. No switch to flip, and no 404 while the CV
-   is still being written. */
+   It points at public/cv.pdf. Drop the file there and the link resolves;
+   until then it is a dead link on purpose, so the button is visible while
+   the CV is still being written. Flip SHOW_CV to false to hide both. */
 export const CV_PATH = "/cv.pdf";
-export const SHOW_CV = existsSync(join(process.cwd(), "public", CV_PATH));
+export const SHOW_CV = true;
