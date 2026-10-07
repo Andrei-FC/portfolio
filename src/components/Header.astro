@@ -1,0 +1,306 @@
+---
+import { getCollection } from "astro:content";
+import Chevron from "./icons/Chevron.astro";
+import { t, type Locale } from "../i18n/ui";
+
+interface Props { locale: Locale; inverse?: boolean }
+const { locale, inverse = false } = Astro.props;
+const tr = t(locale);
+
+const cases = (await getCollection("cases", (e) => e.id.startsWith(`${locale}/`)))
+  .sort((a, b) => a.data.order - b.data.order);
+
+// Read the current page off the URL rather than threading it through every
+// page: the menu needs the open case's slug, not just a section name.
+const path = Astro.url.pathname;
+const home = `/${locale}/`;
+const about = `/${locale}/about/`;
+const isHome = path === home;
+const isAbout = path.startsWith(about);
+const openCase = cases.find((c) => path.startsWith(`/${locale}/work/${c.data.slug}/`))?.data.slug;
+---
+<header class:list={["site-header", inverse && "site-header--inverse"]}>
+  <div class="site-header__inner">
+    <a class="t-label site-header__brand" href={home}>Andrei Carvalho</a>
+
+    <nav class="site-header__nav" aria-label={tr("nav.menu")}>
+      <div class="nav-menu">
+        <button
+          class:list={["nav-item", "nav-item--trigger", openCase && "is-current"]}
+          type="button"
+          id="cases-trigger"
+          aria-expanded="false"
+          aria-controls="cases-menu"
+        >
+          <span class="t-label">{tr("nav.cases")}</span>
+          <Chevron />
+        </button>
+        <div class="nav-dropdown surface-light" id="cases-menu" hidden>
+          {cases.map((c) => (
+            <a
+              class="menu-link"
+              href={`/${locale}/work/${c.data.slug}/`}
+              aria-current={c.data.slug === openCase ? "page" : undefined}
+            >
+              <span class="t-body-m">{c.data.cardTitle}</span>
+              <span class="t-caption muted">{c.data.org}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a class="nav-item" href={about} aria-current={isAbout ? "page" : undefined}><span class="t-label">{tr("nav.about")}</span></a>
+      <!-- Not a page: it takes you down to the footer, wherever you are. -->
+      <a class="nav-item" href="#contact"><span class="t-label">{tr("nav.contact")}</span></a>
+    </nav>
+
+    <button
+      class="site-header__burger"
+      type="button"
+      id="menu-trigger"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="t-label">{tr("nav.menu")}</span>
+      <Chevron />
+    </button>
+  </div>
+
+  <div class="mobile-menu surface-light" id="mobile-menu" hidden>
+    <p class="t-label eyebrow mobile-menu__label">{tr("nav.cases")}</p>
+    {cases.map((c) => (
+      <a
+        class="menu-link"
+        href={`/${locale}/work/${c.data.slug}/`}
+        aria-current={c.data.slug === openCase ? "page" : undefined}
+      >
+        <span class="t-body-m">{c.data.cardTitle}</span>
+        <span class="t-caption muted">{c.data.org}</span>
+      </a>
+    ))}
+    <div class="mobile-menu__divider"></div>
+    <!-- Home only exists here: on desktop the brand is the way back. -->
+    <a class="mobile-row t-body-m" href={home} aria-current={isHome ? "page" : undefined}>{tr("nav.home")}</a>
+    <a class="mobile-row t-body-m" href={about} aria-current={isAbout ? "page" : undefined}>{tr("nav.about")}</a>
+    <a class="mobile-row t-body-m" href="#contact">{tr("nav.contact")}</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg-base);
+    border-bottom: 1px solid var(--border-hairline);
+    color: var(--text-primary);
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+  /* Inverse is a property of the page it sits on, not of scrolling. It rebinds
+     the pair the way .inverse does, so the hairline and the current-page mark
+     follow without being redrawn — and dropping the class restores the light one. */
+  .site-header--inverse:not(.is-scrolled) {
+    background: var(--surface-inverse);
+    --text-primary: var(--text-on-inverse);
+    --text-muted: var(--text-on-inverse-muted);
+    --border-hairline: var(--border-hairline-on-inverse);
+  }
+  /* Scrolled is always raised, on every page: past the hero the header floats
+     over content it cannot predict. */
+  .site-header.is-scrolled { background: var(--surface-raised); }
+
+  .site-header__inner {
+    width: min(var(--container), 100% - 2 * var(--page-margin));
+    margin-inline: auto;
+    /* 24 + the 35 of a nav item + 24 + the hairline = the 84 the file draws. */
+    padding-block: var(--space-element);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-element);
+  }
+  .site-header a { text-decoration: none; }
+  .site-header__brand { color: var(--text-muted); }
+  .site-header__brand:hover { color: var(--text-primary); }
+
+  .site-header__nav { display: flex; align-items: center; gap: var(--space-element); }
+
+  /* One box for every top-level item, link or trigger, so the row keeps a
+     single baseline and the current-page rule lands in the same place. */
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: var(--space-tight);
+    padding-bottom: 9px;
+    color: var(--text-muted);
+    background: none;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 180ms ease;
+  }
+  .nav-item:hover { color: var(--text-primary); }
+  .nav-item[aria-current="page"],
+  .nav-item.is-current,
+  .nav-item[aria-expanded="true"] {
+    color: var(--text-primary);
+    padding-bottom: var(--space-tight);
+    border-bottom: 1px solid currentColor;
+  }
+
+  .nav-menu { position: relative; }
+  .nav-dropdown {
+    position: absolute;
+    /* 8px under the header's hairline, which sits one bottom padding
+       plus that hairline below this trigger. */
+    top: calc(100% + var(--space-element) + var(--space-tight) + 1px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    padding-block: var(--space-tight);
+    border: 1px solid var(--border-hairline);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+  .nav-dropdown[hidden] { display: none; }
+
+  .menu-link {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px var(--space-text);
+    color: var(--text-primary);
+  }
+  .menu-link:hover { background: var(--bg-alt); }
+  .menu-link[aria-current="page"] { background: var(--bg-alt); }
+  /* The mark is a bar down the leading edge, not an underline. */
+  .menu-link[aria-current="page"]::before,
+  .mobile-row[aria-current="page"]::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: 2px;
+    background: var(--text-primary);
+  }
+
+  .site-header__burger,
+  .mobile-menu { display: none; }
+
+  @media (max-width: 760px) {
+    .site-header__inner {
+      /* --header-h is the whole bar, hairline included, as the file measures it. */
+      height: calc(var(--header-h) - 1px);
+      padding-block: 0;
+    }
+    .site-header__brand { color: var(--text-primary); }
+    .site-header__nav { display: none; }
+
+    .site-header__burger {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0;
+      color: var(--text-primary);
+      background: none;
+      border: 0;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* Full-bleed panel hanging off the header, not a page of its own. */
+    .mobile-menu {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      padding-block: var(--space-text);
+    }
+    .mobile-menu[hidden] { display: none; }
+    .mobile-menu__label { padding: var(--space-tight) var(--space-element); }
+    .mobile-menu .menu-link { padding-inline: var(--space-element); }
+    .mobile-menu__divider {
+      height: 1px;
+      background: var(--border-hairline);
+    }
+    .mobile-row {
+      position: relative;
+      display: block;
+      padding: 12px var(--space-element);
+      color: var(--text-primary);
+    }
+    .mobile-row:hover,
+    .mobile-row[aria-current="page"] { background: var(--bg-alt); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header, .nav-item { transition: none; }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>(".site-header");
+  if (header) {
+    const THRESHOLD = 500;
+    let ticking = false;
+    const apply = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > THRESHOLD);
+      ticking = false;
+    };
+    apply();
+    addEventListener("scroll", () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+    }, { passive: true });
+
+    // Both menus are the same thing at two sizes: a trigger that owns one panel.
+    const menus = [
+      ["cases-trigger", "cases-menu"],
+      ["menu-trigger", "mobile-menu"]
+    ].flatMap(([t, p]) => {
+      const trigger = document.getElementById(t);
+      const panel = document.getElementById(p);
+      return trigger && panel ? [{ trigger, panel }] : [];
+    });
+
+    const close = (m: { trigger: HTMLElement; panel: HTMLElement }) => {
+      m.trigger.setAttribute("aria-expanded", "false");
+      m.panel.hidden = true;
+    };
+    const closeAll = () => menus.forEach(close);
+
+    for (const m of menus) {
+      m.trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const open = m.trigger.getAttribute("aria-expanded") === "true";
+        closeAll();
+        if (!open) {
+          m.trigger.setAttribute("aria-expanded", "true");
+          m.panel.hidden = false;
+        }
+      });
+      // Following a link inside closes it; so does landing on the footer.
+      m.panel.addEventListener("click", (e) => {
+        if ((e.target as HTMLElement).closest("a")) closeAll();
+      });
+    }
+
+    addEventListener("click", (e) => {
+      if (!header.contains(e.target as Node)) closeAll();
+    });
+    addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      const open = menus.find((m) => m.trigger.getAttribute("aria-expanded") === "true");
+      if (open) { closeAll(); open.trigger.focus(); }
+    });
+    // The two panels are the same menu at different sizes, so crossing the
+    // breakpoint with one open would leave the other half-shown.
+    matchMedia("(max-width: 760px)").addEventListener("change", closeAll);
+  }
+</script>

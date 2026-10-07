@@ -1,0 +1,50 @@
+---
+import { t, type Locale } from "../i18n/ui";
+interface Props { locale: Locale; eyebrow?: string; columns: string[]; rows: string[][]; scroll?: boolean }
+const { locale, eyebrow, columns, rows, scroll = false } = Astro.props;
+const tr = t(locale);
+---
+<div class:list={["ctable", scroll && "ctable--scroll"]}>
+  {(eyebrow || scroll) && (
+    <div class="ctable__head">
+      {eyebrow && <span class="t-label eyebrow">{eyebrow}</span>}
+      {scroll && <span class="t-label muted ctable__swipe">{tr("case.swipe")} →</span>}
+    </div>
+  )}
+  <div class="ctable__viewport">
+    <table class="ctable__table">
+      <thead>
+        <tr>{columns.map((c) => <th scope="col" class="t-label muted">{c}</th>)}</tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr>{row.map((cell, i) => <td class:list={["t-body-m", i === 0 && "muted"]}>{cell}</td>)}</tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .ctable__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-element); margin-bottom: var(--space-text); }
+  .ctable__swipe { display: none; }
+  .ctable__table { width: 100%; border-collapse: collapse; text-align: left; }
+  .ctable__table th, .ctable__table td {
+    padding-block: var(--space-element);
+    border-top: 1px solid var(--border-hairline);
+    vertical-align: top;
+    padding-right: var(--gutter);
+    font-weight: inherit;
+  }
+  .ctable__table th:last-child, .ctable__table td:last-child { padding-right: 0; }
+
+  @media (max-width: 760px) {
+    /* Sequential reading matters here, so the matrix keeps its shape and scrolls.
+       It bleeds to the right edge: cut text is what says "there is more". */
+    .ctable--scroll { margin-right: calc(-1 * var(--page-margin)); }
+    .ctable--scroll .ctable__swipe { display: inline; margin-right: var(--page-margin); }
+    .ctable--scroll .ctable__viewport { overflow-x: auto; overscroll-behavior-x: contain; }
+    .ctable--scroll .ctable__table { width: max-content; min-width: 100%; }
+    .ctable--scroll th, .ctable--scroll td { white-space: nowrap; }
+  }
+</style>

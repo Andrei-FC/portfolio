@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  slug: string;
+  accent: string;
+  org: string;
+  cardTitle: string;
+  description: string;
+  cover?: { image?: string; alt?: string };
+}
+const { locale, slug, accent, org, cardTitle, description, cover } = Astro.props;
+const tr = t(locale);
+
+const files = import.meta.glob<{ default: ImageMetadata }>("/src/assets/cases/**/*.{png,jpg,jpeg,webp,avif}");
+const key = cover?.image ? `/src/assets/cases/${cover.image}` : null;
+const loader = key ? files[key] : undefined;
+const asset = loader ? (await loader()).default : null;
+---
+<!-- The card carries the case accent so the media slot reads as that case
+     before its screenshot exists, exactly as the Figma placeholder does. -->
+<a class="card" href={`/${locale}/work/${slug}/`} data-accent={accent}>
+  {asset
+    ? <Image class="card__media" src={asset} alt={cover?.alt || ""} widths={[390, 640, 840, 1248]} sizes="(max-width: 760px) 100vw, 624px" />
+    : <div class="card__media card__media--empty"></div>}
+  <div class="stack stack--tight">
+    <h3 class="t-heading-s">{cardTitle}</h3>
+    <span class="t-caption muted">{org}</span>
+  </div>
+  <!-- Same string as the case hero, clamped. Never a second field to keep in sync. -->
+  <p class="t-body-m card__summary">{description}</p>
+  <span class="t-label card__cta">{tr("card.cta")} <span aria-hidden="true">→</span></span>
+</a>
+
+<style>
+  /* No card surface: the media, the text and the link sit straight on the band
+     and take its text tokens, so the same card works light and inverse. */
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-text);
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+  /* Fixed, not an aspect ratio — a two-up card is wider than a three-up one and
+     the media must not grow with it. Both are 306 tall in the file. */
+  .card__media {
+    width: 100%;
+    height: 306px;
+    object-fit: cover;
+    border-radius: var(--radius-figure);
+    background: var(--accent-vivid);
+  }
+  .card__media--empty { display: block; }
+  .card__summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card__cta { display: flex; gap: var(--space-tight); align-items: center; }
+  .card:hover .card__cta { text-decoration: underline; text-underline-offset: 4px; }
+</style>

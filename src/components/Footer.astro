@@ -1,0 +1,63 @@
+---
+import { CV_PATH, SHOW_CV } from "../config";
+import { t, type Locale } from "../i18n/ui";
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+
+const EMAIL = "andreicarvalho@icloud.com";
+---
+<!-- Also the contact section: every page ends here, and the Contact item in
+     the header is an anchor to it rather than a page of its own. -->
+<footer class="site-footer inverse" id="contact">
+  <div class="container stack stack--group">
+    <div class="stack stack--text">
+      <span class="t-label eyebrow">{tr("footer.contact")}</span>
+      <a class="t-heading-l site-footer__email" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      <p class="t-body-m muted">{tr("footer.availability")}</p>
+      {SHOW_CV && (
+        <p class="site-footer__cv">
+          <a class="t-label" href={CV_PATH} download="Andrei-Carvalho-CV.pdf">{tr("about.cv")} <span class="muted">(PDF)</span> ↓</a>
+        </p>
+      )}
+    </div>
+    <div class="site-footer__bottom">
+      <ul class="site-footer__links">
+        <li><a class="t-label" href="https://www.linkedin.com/in/andreicarvalho" rel="me">LinkedIn</a></li>
+        <li><a class="t-label" href={`mailto:${EMAIL}`}>Email</a></li>
+        <li><a class="t-label" href="https://wa.me/5511982642063" rel="me noopener">{tr("footer.message")}</a></li>
+      </ul>
+      <span class="t-caption muted">{tr("footer.rights")}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border-hairline);
+    padding-block: var(--space-block);
+    /* The sticky header must not sit on top of the label when Contact jumps here. */
+    scroll-margin-top: var(--header-h);
+  }
+  .site-footer a { text-decoration: none; }
+  .site-footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .site-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-element);
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border-hairline);
+    padding-top: var(--space-element);
+  }
+  .site-footer__links { display: flex; gap: var(--space-element); }
+  .site-footer__cv { padding-top: var(--space-element); }
+
+  @media (max-width: 760px) {
+    /* The address is one unbreakable word and runs off a phone at the
+       Heading/L floor, so it steps to Heading/M — the same reduction the
+       scale already makes on the mobile strip. */
+    .site-footer__email { font-size: 24px; line-height: 1.28; letter-spacing: -0.0195em; }
+  }
+</style>

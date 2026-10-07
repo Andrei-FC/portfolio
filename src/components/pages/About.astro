@@ -1,0 +1,234 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import ProjectCard from "../ProjectCard.astro";
+import portrait from "../../assets/andrei-about.jpg";
+import { CV_PATH, SHOW_CV } from "../../config";
+import { t, type Locale } from "../../i18n/ui";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+
+const cases = (await getCollection("cases", (e) => e.id.startsWith(`${locale}/`)))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const trajectory = [
+  { period: "2024 — present", org: "Handy Golf", role: "Head of Design", mode: "Remote · US" },
+  { period: "2020 — 2024", org: "Grupo NGN", role: "UX/UI Product Designer", mode: "Remote · US" },
+  { period: "2013 — 2020", org: "VisualCue", role: "Art Director", mode: "Remote · US from 2017" },
+  { period: "2009 — 2014", org: "QI Solution", role: "Senior Designer", mode: "" }
+];
+
+const copy = {
+  en: {
+    claim: "Design is how I make things understood",
+    claimSub: "My work has always been about finding the clearest, most effective way to connect what a product wants to say with what people need to understand.",
+    portraitAlt: "Andrei Carvalho at his desk, working on a design file",
+    whatEyebrow: "What I do",
+    whatTitle: "Design Strategy & Product Execution",
+    whatBody: "I move between strategy and execution, so I can contribute beyond the design conversation when it matters. I always put my hands on the work, learning what I need to learn and building what needs to be built. At the same time, I also believe good design benefits from different perspectives. Other people's input is always valuable in getting to the best solution possible.",
+    howEyebrow: "How I work",
+    howTitle: "I design around what needs to be built, not the other way around",
+    howBody: "I start by understanding how something works today and why it works that way. I look at the whole process around what I'm designing, not just the part in front of me. From there, I work within the realities of the business, making trade-offs and refining the direction until it is the best solution the situation allows — and one that can actually be implemented.",
+    proof: "Two of my last three positions came from people who had worked with me before and came back for me years later",
+    proofLines: [
+      "The Brazilian partner at VisualCue brought me in after QI Solution.",
+      "The CEO of Handy Golf brought me in after VisualCue in the US."
+    ],
+    trajectory: "Trajectory",
+    practical: "Practical",
+    facts: [
+      ["Based in", "São Paulo, Brazil (UTC−3)"],
+      ["Working", "Remote, with overlap across US and European hours"],
+      ["Languages", "Portuguese (native) · English (professional)"],
+      ["Engagement", "Direct contractor, or EOR via Deel or Remote"],
+      ["Looking for", "Head of Design and Product Design"]
+    ],
+    beyondEyebrow: "Beyond design",
+    beyond: "Husband. Dad of two. Always building, learning, or competing at something. Still curious about how things work"
+  },
+  pt: {
+    claim: "Design é como eu faço as coisas serem entendidas",
+    claimSub: "Meu trabalho sempre foi encontrar a forma mais clara e mais eficaz de conectar o que um produto quer dizer com o que as pessoas precisam entender.",
+    portraitAlt: "Andrei Carvalho na mesa de trabalho, mexendo em um arquivo de design",
+    whatEyebrow: "O que eu faço",
+    whatTitle: "Estratégia de design e execução de produto",
+    whatBody: "Eu me movo entre estratégia e execução, então consigo contribuir além da conversa de design quando isso importa. Sempre ponho a mão no trabalho, aprendendo o que preciso aprender e construindo o que precisa ser construído. Ao mesmo tempo, também acredito que design bom se beneficia de perspectivas diferentes. A contribuição das outras pessoas é sempre valiosa para chegar na melhor solução possível.",
+    howEyebrow: "Como eu trabalho",
+    howTitle: "Eu desenho em volta do que precisa ser construído, não o contrário",
+    howBody: "Começo entendendo como uma coisa funciona hoje e por que ela funciona assim. Olho o processo inteiro em volta do que estou desenhando, não só a parte na minha frente. A partir daí, trabalho dentro das realidades do negócio, fazendo trade-offs e refinando a direção até ela ser a melhor solução que a situação permite — e uma que possa de fato ser implementada.",
+    proof: "Duas das minhas três últimas posições vieram de pessoas que já tinham trabalhado comigo e voltaram atrás de mim anos depois",
+    proofLines: [
+      "O sócio brasileiro da VisualCue me chamou depois da QI Solution.",
+      "O CEO da Handy Golf me chamou depois da VisualCue nos EUA."
+    ],
+    trajectory: "Trajetória",
+    practical: "Prático",
+    facts: [
+      ["Onde moro", "São Paulo, Brasil (UTC−3)"],
+      ["Como trabalho", "Remoto, com sobreposição de horário com EUA e Europa"],
+      ["Idiomas", "Português (nativo) · Inglês (profissional)"],
+      ["Contratação", "Contractor direto, ou EOR via Deel ou Remote"],
+      ["Procurando por", "Head of Design e Product Design"]
+    ],
+    beyondEyebrow: "Além do design",
+    beyond: "Marido. Pai de dois. Sempre construindo, aprendendo ou competindo em alguma coisa. Ainda curioso sobre como as coisas funcionam"
+  }
+}[locale];
+---
+<Base locale={locale} title="About — Andrei Carvalho" description={copy.claimSub} inverseHeader={true} path="/about/">
+  <!-- The hero band and the header are the same surface, so there is no hairline between them. -->
+  <section class="inverse band--tight">
+    <div class="container about-hero">
+      <div class="stack stack--group">
+        <h1 class="t-voice">{copy.claim}</h1>
+        <p class="t-body-l muted">{copy.claimSub}</p>
+      </div>
+      <Image class="about-hero__portrait" src={portrait} alt={copy.portraitAlt} widths={[515, 1030]} sizes="(max-width: 900px) 100vw, 515px" />
+    </div>
+  </section>
+
+  <section class="band--tight">
+    <div class="container stack stack--block">
+      <div class="stack stack--text about-col">
+        <span class="t-label eyebrow">{copy.whatEyebrow}</span>
+        <h2 class="t-heading-l">{copy.whatTitle}</h2>
+        <p class="t-body-l muted">{copy.whatBody}</p>
+      </div>
+      <div class="stack stack--text about-col">
+        <span class="t-label eyebrow">{copy.howEyebrow}</span>
+        <h2 class="t-heading-l">{copy.howTitle}</h2>
+        <p class="t-body-l muted">{copy.howBody}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band inverse">
+    <div class="container stack stack--element">
+      <p class="t-display-l about-proof">{copy.proof}</p>
+      <p class="t-body-m muted">
+        {copy.proofLines.map((line) => <span class="about-proof__line">{line}</span>)}
+      </p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="container stack stack--block">
+      <div class="stack stack--text">
+        <span class="t-label eyebrow">{copy.trajectory}</span>
+        <ul class="traj">
+          {trajectory.map((item) => (
+            <li class="traj__row">
+              <span class="t-body-m muted traj__period">{item.period}</span>
+              <span class="t-body-m traj__org">{item.org}</span>
+              <span class="t-body-m traj__role">{item.role}</span>
+              <span class="t-body-m muted traj__mode">{item.mode}</span>
+            </li>
+          ))}
+        </ul>
+        {SHOW_CV && (
+          <p class="cv-link">
+            <a class="t-label" href={CV_PATH} download="Andrei-Carvalho-CV.pdf">{tr("about.cv")} <span class="muted">(PDF)</span> ↓</a>
+          </p>
+        )}
+      </div>
+
+      <div class="stack stack--text">
+        <span class="t-label eyebrow">{copy.practical}</span>
+        <dl class="facts">
+          {copy.facts.map(([label, value]) => (
+            <div class="stack stack--tight">
+              <dt class="t-label muted">{label}</dt>
+              <dd class="t-body-m">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div class="stack stack--text">
+        <span class="t-label eyebrow">{copy.beyondEyebrow}</span>
+        <p class="t-body-m about-beyond">{copy.beyond}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band--tight inverse">
+    <div class="container stack stack--group">
+      <span class="t-label eyebrow">{tr("about.stories")}</span>
+      <div class="stories">
+        {cases.map((c) => (
+          <ProjectCard
+            locale={locale}
+            slug={c.data.slug}
+            accent={c.data.accent}
+            org={c.data.org}
+            cardTitle={c.data.cardTitle}
+            description={c.data.description}
+            cover={c.data.cover}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-hero {
+    display: grid;
+    grid-template-columns: 1fr 515px;
+    gap: var(--space-group);
+    align-items: center;
+  }
+  .about-hero__portrait {
+    width: 100%;
+    height: 556px;
+    object-fit: cover;
+    border-radius: var(--radius-figure);
+  }
+
+  /* 6 columns of the 12, the measure the file gives every body column. */
+  .about-col, .about-beyond { max-width: 624px; }
+  /* 8 columns, like a case title. */
+  .about-proof { max-width: 840px; }
+  .about-proof__line { display: block; }
+
+  /* 2 / 4 / 3 / 3 of the twelve, as the file lays it out. */
+  .traj__row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--gutter);
+    align-items: center;
+    padding-block: var(--space-element);
+    border-top: 1px solid var(--border-hairline);
+  }
+  .traj__period { grid-column: span 2; }
+  .traj__org { grid-column: span 4; }
+  .traj__role { grid-column: span 3; }
+  .traj__mode { grid-column: span 3; }
+  .cv-link { padding-top: var(--space-element); }
+  .cv-link a { text-decoration: none; }
+  .cv-link a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-group) var(--gutter); margin: 0; }
+  .facts dd { margin: 0; }
+
+  .stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); align-items: stretch; }
+
+  @media (max-width: 1000px) {
+    .facts { grid-template-columns: repeat(2, 1fr); }
+    .stories { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .about-hero { grid-template-columns: 1fr; }
+    .about-hero__portrait { height: auto; aspect-ratio: 515 / 556; }
+  }
+  @media (max-width: 760px) {
+    /* Each trajectory row is a self-contained fact, so it stacks instead of scrolling. */
+    .traj__row { grid-template-columns: 1fr; gap: var(--space-tight); padding-block: 20px; }
+    .traj__period, .traj__org, .traj__role, .traj__mode { grid-column: 1 / -1; }
+    .facts { grid-template-columns: 1fr; gap: var(--space-element); }
+    .stories { grid-template-columns: 1fr; gap: var(--space-element); }
+  }
+</style>

@@ -1,0 +1,254 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import Plate from "../Plate.astro";
+import CaseTable from "../CaseTable.astro";
+import ProjectCard from "../ProjectCard.astro";
+import { t, type Locale } from "../../i18n/ui";
+
+interface Props { locale: Locale; entry: CollectionEntry<"cases"> }
+const { locale, entry } = Astro.props;
+const d = entry.data;
+const tr = t(locale);
+
+const others = (await getCollection("cases", (e) => e.id.startsWith(`${locale}/`)))
+  .filter((e) => e.data.slug !== d.slug)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const metaFields = [
+  ["case.role", d.meta.role],
+  ["case.scope", d.meta.scope],
+  ["case.period", d.meta.period],
+  ["case.platforms", d.meta.platforms]
+] as const;
+
+const figures = import.meta.glob<{ default: ImageMetadata }>("/src/assets/cases/**/*.{png,jpg,jpeg,webp,avif}");
+const figure = async (path?: string) => {
+  const loader = path ? figures[`/src/assets/cases/${path}`] : undefined;
+  return loader ? (await loader()).default : null;
+};
+
+// Resolved up front: a block cannot await inside the template.
+const mediaAssets = new Map<string, ImageMetadata | null>();
+for (const block of d.blocks) {
+  if ((block.type === "media" || block.type === "split") && block.image) {
+    mediaAssets.set(block.image, await figure(block.image));
+  }
+}
+---
+<Base
+  locale={locale}
+  title={`${d.cardTitle} — Andrei Carvalho`}
+  description={d.description}
+  accent={d.accent}
+  path={`/work/${d.slug}/`}
+>
+  <section class="band--tight">
+    <div class="container stack stack--group">
+      <p class="t-label muted">
+        <a href={`/${locale}/`}>{tr("nav.work")}</a> / <span class="accent">{d.org}</span>
+      </p>
+      <div class="grid">
+        <div class="wide stack stack--element">
+          <h1 class="t-display-l">{d.title}</h1>
+          <p class="t-body-l muted case-hero__sub">{d.description}</p>
+        </div>
+      </div>
+      <dl class="case-meta">
+        {metaFields.map(([key, value]) => (
+          <div class="case-meta__cell stack stack--tight">
+            <dt class="t-label muted">{tr(key)}</dt>
+            <dd class="t-body-m">{value}</dd>
+          </div>
+        ))}
+      </dl>
+      {d.cover && <Plate locale={locale} {...d.cover} />}
+    </div>
+  </section>
+
+  {d.stats.length > 0 && (
+    <section class="band--tight inverse">
+      <div class="container stats">
+        {d.stats.map((s) => (
+          <div class="stack stack--tight">
+            <span class="t-heading-l accent">{s.value}</span>
+            <span class="t-body-m muted">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {d.blocks.map((block) => {
+    if (block.type === "note") {
+      return (
+        <section class="band band-alt">
+          <div class="container grid">
+            <div class="stack stack--element contained">
+              {block.title && <h2 class="t-heading-l lede-measure">{block.title}</h2>}
+              {block.text && <p class="t-body-l muted read-measure">{block.text}</p>}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (block.type === "media") {
+      const asset = block.image ? mediaAssets.get(block.image) : null;
+      return asset
+        ? <Image class="case-media" src={asset} alt={block.alt ?? ""} widths={[760, 1440, 2880]} sizes="100vw" />
+        : <div class="case-media case-media--empty" role="img" aria-label={block.alt ?? ""}></div>;
+    }
+
+    if (block.type === "split") {
+      const asset = block.image ? mediaAssets.get(block.image) : null;
+      return (
+        <section class="band inverse">
+          <div class="container split">
+            <div class="stack stack--group">
+              <div class="stack stack--text">
+                {block.eyebrow && <span class="t-label eyebrow">{block.eyebrow}</span>}
+                <h2 class="t-heading-l">{block.title}</h2>
+              </div>
+              <p class="t-body-l muted">{block.text}</p>
+            </div>
+            <div class="split__figure">
+              {asset && <Image src={asset} alt={block.alt ?? ""} widths={[369, 484, 968]} sizes="(max-width: 760px) 100vw, 484px" />}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (block.type === "table") {
+      return (
+        <section class="band">
+          <div class="container">
+            <CaseTable locale={locale} eyebrow={block.eyebrow} columns={block.columns} rows={block.rows} scroll={block.scroll} />
+          </div>
+        </section>
+      );
+    }
+
+    // A decision. "l" speaks for a section — Heading/L under a quiet eyebrow;
+    // "m" is a step inside one — Heading/M under the case accent.
+    const section = block.size === "l";
+    const lede = block.lede ?? (block.columns.length > 1 || section);
+    const surface = block.surface === "inverse" ? "inverse" : block.surface === "alt" ? "band-alt" : "";
+    return (
+      <section class:list={["band", surface]}>
+        <div class:list={["container", "stack", section ? "stack--group" : "stack--element"]}>
+          <div class="stack stack--text">
+            {block.eyebrow && (
+              <span class:list={["t-label", section ? "eyebrow" : "eyebrow accent"]}>{block.eyebrow}</span>
+            )}
+            <h2 class:list={[section ? "t-heading-l" : "t-heading-m lede-measure"]}>{block.title}</h2>
+          </div>
+
+          {block.columns.length > 0 && (
+            <div class="grid">
+              <!-- A section lays its two columns side by side; a decision keeps
+                   everything in the one 6-column measure and stacks. -->
+              <div class:list={section && block.columns.length > 1 ? "pair" : "read stacked"}>
+                {block.columns.map((column, i) => (
+                  <div class="stack stack--text">
+                    {column.split(/\n\s*\n/).map((para) => (
+                      <p class:list={["t-body-l", (i > 0 || !lede) && "muted"]}>{para}</p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {block.plates.length > 0 && (
+            <div class:list={["plates", block.platesSideBySide && "plates--pair"]}>
+              {block.plates.map((p) => <Plate locale={locale} half={block.platesSideBySide} {...p} />)}
+            </div>
+          )}
+
+          {block.source && (
+            <div class="case-source stack stack--tight">
+              <span class="t-label eyebrow">{tr("case.source")}</span>
+              <a class="t-body-m accent" href={block.source.href ?? `https://${block.source.url}`} rel="noopener">
+                {block.source.citation}
+              </a>
+              <span class="t-caption muted">{block.source.url}</span>
+            </div>
+          )}
+
+          {block.footnote && <p class="t-caption muted read-measure">{block.footnote}</p>}
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="band--tight inverse">
+    <div class="container stack stack--group">
+      <span class="t-label eyebrow">{tr("case.stories")}</span>
+      <div class="stories">
+        {others.map((o) => (
+          <ProjectCard
+            locale={locale}
+            slug={o.data.slug}
+            accent={o.data.accent}
+            org={o.data.org}
+            cardTitle={o.data.cardTitle}
+            description={o.data.description}
+            cover={o.data.cover}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* The two measures that are not grid children of .grid themselves. */
+  .lede-measure { max-width: 840px; }
+  .read-measure { max-width: 624px; }
+  .case-hero__sub { max-width: 840px; }
+
+  /* The meta row is ruled off from the titles above it, as in the file. */
+  .case-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gutter);
+    margin: 0;
+    border-top: 1px solid var(--border-hairline);
+    padding-top: var(--space-element);
+  }
+  .case-meta dd { margin: 0; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+  .stories { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gutter); }
+
+  .stacked { display: flex; flex-direction: column; gap: var(--space-element); }
+
+  .plates { display: grid; gap: var(--space-group); }
+  /* Two plates share a row when they are a comparison, not a sequence. */
+  .plates--pair { grid-template-columns: repeat(2, 1fr); gap: var(--gutter); }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-group); align-items: center; }
+  .split__figure { display: flex; justify-content: center; }
+  .split__figure :global(img) { width: 100%; max-width: 484px; height: auto; }
+
+  /* Full-bleed closing image: no container, no caption. */
+  .case-media { width: 100%; height: auto; display: block; }
+  .case-media--empty { aspect-ratio: 1440 / 1008; background: var(--neutral-200); }
+
+  .case-source {
+    border-top: 1px solid var(--border-hairline);
+    padding-top: var(--space-element);
+  }
+  .case-source a { text-decoration: none; }
+  .case-source a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  @media (max-width: 760px) {
+    .case-meta { grid-template-columns: repeat(2, 1fr); }
+    .stats, .stories, .plates--pair, .split { grid-template-columns: 1fr; gap: var(--space-element); }
+    .plates { gap: var(--space-element); }
+  }
+</style>

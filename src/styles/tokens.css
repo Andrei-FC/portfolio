@@ -1,0 +1,69 @@
+/* Exported from Figma file `Design` — collections Primitives / Shell / Accent.
+   Do not hand-edit values here. Change them in Figma and re-export. */
+
+:root {
+  /* Primitives */
+  --neutral-white: #ffffff;
+  --neutral-50:  #f8f8f8;
+  --neutral-100: #f1f1f1;
+  --neutral-200: #dcdcdc;
+  --neutral-300: #c8c8c8;
+  --neutral-500: #9a9a9a;
+  --neutral-600: #656565;
+  --neutral-800: #2a2a2a;
+  --neutral-850: #242424;
+  --neutral-900: #111111;
+
+  /* Shell — semantic */
+  --bg-base: var(--neutral-50);
+  --bg-alt: var(--neutral-100);
+  --surface-raised: var(--neutral-white);
+  --surface-inverse: var(--neutral-900);
+  --border-hairline: var(--neutral-200);
+  --border-hairline-on-inverse: var(--neutral-800);
+  --text-primary: var(--neutral-850);
+  --text-muted: var(--neutral-600);
+  --text-on-inverse: var(--neutral-100);
+  --text-on-inverse-muted: var(--neutral-500);
+
+  /* Space — base 4, never a raw pixel */
+  --space-tight: 8px;
+  --space-text: 16px;
+  --space-element: 24px;
+  --space-group: 48px;
+  --space-block: 96px;
+  --space-band: 128px;
+
+  --radius-chip: 4px;
+  --radius-figure: 8px;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+
+  /* Accent — one slot, rebound per case */
+  --accent-vivid: #3ab549;
+  --accent-deep: #287c32;
+}
+
+[data-accent="handy-golf"] { --accent-vivid: #3ab549; --accent-deep: #287c32; }
+[data-accent="cuefit"]     { --accent-vivid: #f39308; --accent-deep: #9c5d04; }
+[data-accent="pace"]       { --accent-vivid: #00a2ff; --accent-deep: #006faf; }
+
+/* Surface pair, never a mode. A dark band carries its own text and border tokens. */
+.inverse {
+  background: var(--surface-inverse);
+  --text-primary: var(--text-on-inverse);
+  --text-muted: var(--text-on-inverse-muted);
+  --border-hairline: var(--border-hairline-on-inverse);
+  color: var(--text-primary);
+}
+
+/* The other half of the pair, for something that stays light inside an inverse
+   parent. A menu hanging off the header is its own surface, not part of the
+   band it hangs from, so it has to undo the rebind rather than inherit it. */
+.surface-light {
+  background: var(--surface-raised);
+  --text-primary: var(--neutral-850);
+  --text-muted: var(--neutral-600);
+  --border-hairline: var(--neutral-200);
+  color: var(--text-primary);
+}

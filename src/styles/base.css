@@ -1,0 +1,92 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource/playfair-display/700.css";
+@import "./tokens.css";
+
+/* Type scale. Desktop values come from the Figma text styles; the mobile end of each
+   clamp is the reduction decided on the mobile strip (Display/L -> Heading/L,
+   Body/L -> Body/M). Tracking is the Inter dynamic-metrics curve, % converted to em. */
+:root {
+  --font-sans: "Inter Variable", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-voice: "Playfair Display", Georgia, serif;
+  --page-margin: clamp(24px, 5.83vw, 84px);
+  --container: 1272px;
+  --gutter: var(--space-element);
+  --header-h: 84px;
+}
+@media (max-width: 760px) { :root { --header-h: 64px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+  border-radius: var(--radius-chip);
+}
+h1, h2, h3, p, figure, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+
+.t-display-xl { font-size: clamp(40px, 7.5vw, 64px); line-height: 1.04; letter-spacing: -0.0223em; font-weight: 500; }
+.t-display-l  { font-size: clamp(32px, 4.4vw, 46px); line-height: 1.08; letter-spacing: -0.0222em; font-weight: 500; }
+.t-heading-l  { font-size: clamp(28px, 3.2vw, 32px); line-height: 1.16; letter-spacing: -0.0216em; font-weight: 500; }
+.t-heading-m  { font-size: clamp(20px, 2.2vw, 24px); line-height: 1.28; letter-spacing: -0.0195em; font-weight: 500; }
+.t-heading-s  { font-size: 20px; line-height: 1.36; letter-spacing: -0.0167em; font-weight: 500; }
+.t-body-l     { font-size: clamp(16px, 1.3vw, 18px); line-height: 1.6; letter-spacing: -0.0143em; font-weight: 400; }
+.t-body-m     { font-size: 16px; line-height: 1.62; letter-spacing: -0.011em; font-weight: 400; }
+.t-caption    { font-size: 13px; line-height: 1.5; letter-spacing: -0.0032em; font-weight: 400; }
+.t-label      { font-size: 13px; line-height: 1.4; letter-spacing: -0.0032em; font-weight: 500; }
+.t-voice { font-family: var(--font-voice); font-weight: 700; font-size: clamp(36px, 7.5vw, 64px); line-height: 1.04; letter-spacing: 0.02em; }
+
+.muted { color: var(--text-muted); }
+.eyebrow { color: var(--text-muted); text-transform: uppercase; }
+
+.container { width: min(var(--container), 100% - 2 * var(--page-margin)); margin-inline: auto; }
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gutter); }
+/* The three measures the file uses, as spans rather than character counts:
+   10 columns for a case title, 8 for what sits under it, 6 for body copy. */
+.wide { grid-column: 1 / 11; }
+.lead { grid-column: 1 / 9; }
+.read { grid-column: 1 / 7; }
+.contained { grid-column: 1 / -1; }
+.pair { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gutter); }
+.rail { grid-column: 1 / -1; display: grid; grid-template-columns: 3fr 9fr; gap: var(--gutter); }
+
+@media (max-width: 760px) {
+  .wide, .lead, .read { grid-column: 1 / -1; }
+  .pair, .rail { grid-template-columns: 1fr; }
+}
+
+.band { padding-block: var(--space-band); }
+.band--tight { padding-block: var(--space-block); }
+@media (max-width: 760px) {
+  .band { padding-block: var(--space-block); }
+  .band--tight { padding-block: var(--space-group); }
+}
+
+.stack { display: flex; flex-direction: column; }
+.stack--tight { gap: var(--space-tight); }
+.stack--text { gap: var(--space-text); }
+.stack--element { gap: var(--space-element); }
+.stack--group { gap: var(--space-group); }
+.stack--block { gap: var(--space-block); }
+
+.row { display: grid; gap: var(--gutter); padding-block: var(--space-element); border-top: 1px solid var(--border-hairline); }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Band surfaces. The alternate grey is the interstitial note between decisions. */
+.band-alt { background: var(--bg-alt); }
+/* On a dark band the accent is always the vivid one — deep is calibrated against bg/base. */
+.inverse .accent { color: var(--accent-vivid); }
+.accent { color: var(--accent-deep); }

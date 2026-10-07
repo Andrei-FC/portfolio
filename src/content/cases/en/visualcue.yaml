@@ -1,0 +1,151 @@
+slug: visualcue
+order: 2
+accent: cuefit
+org: VisualCue
+title: Every new client was a new one-off project
+cardTitle: Product Evolution
+description: >-
+  Every implementation required a lot of custom work, which made the product expensive and
+  difficult to scale. The goal was to turn that process into something repeatable — giving
+  customers enough control to configure the platform themselves, without having to understand
+  everything happening underneath it.
+meta:
+  role: Product Designer
+  scope: End-to-end UX & UI, tile system, data flow
+  period: 2020 — 2022
+  platforms: Web · Desktop app
+cover:
+  image: visualcue/1 - cover.jpg
+  alt: NGN Insights, with tiles configured directly inside the product
+  caption: "NGN Insights: configurable tiles built directly inside the product."
+stats:
+  - { value: "Faster implementation", label: "1+ month → ~1 week" }
+  - { value: "Repeatable by design", label: "Custom projects → Repeatable setup" }
+  - { value: "Implementation into the product", label: "Custom deployment → In-product configuration" }
+blocks:
+  - type: decision
+    size: l
+    eyebrow: THE BRIEF
+    title: The product worked well once it was implemented. The problem was getting it there
+    columns:
+      - >-
+        Every new client required a significant amount of custom work from our side. The team had
+        to build the visual elements, prepare the data, and adapt the implementation to each
+        customer's environment. That made the product expensive to deploy and difficult to scale.
+      - >-
+        The goal was to move that work into the product itself — making the platform simple enough
+        for a customer to configure, while still giving them access to a system that was genuinely
+        complex underneath.
+
+  - type: decision
+    eyebrow: WHERE IT STARTED
+    title: A highly customized visual language
+    columns:
+      - >-
+        VisualCue represented data through highly customized tiles, combining icons, colors, and
+        layouts into a visual language that was powerful, but difficult to reproduce.
+      - >-
+        The same customization existed underneath the visual layer. Data had to be prepared before
+        reaching the platform, and even simple data calculations required custom development
+        outside the product.
+    platesSideBySide: true
+    plates:
+      - image: visualcue/2.1 VisualCue Default Tiles.jpg
+        alt: A set of VisualCue tiles, each drawn differently for a different client
+        caption: Each client received a custom tile design, built around their specific data and requirements.
+      - image: visualcue/2.2 Illustrator Build Process.jpg
+        alt: The Illustrator build process for a tile, layer by layer
+        caption: >-
+          Tiles were drawn layer by layer in Illustrator, then exported through a script. Creating
+          each variation depended on this manual process.
+
+  - type: note
+    title: >-
+      As VisualCue moved toward the call center market, the product evolved into CueFit — and its
+      visual language needed to become more focused and repeatable.
+
+  - type: decision
+    eyebrow: CUEFIT
+    title: From custom tiles to a repeatable visual system
+    columns:
+      - >-
+        The original visual language was redesigned around a consistent structure. The same
+        underlying system could now be reused across different projects, while still allowing each
+        tile to reflect the data it represented.
+    plates:
+      - image: visualcue/3 From custom tiles to a repeatable visual system.jpg
+        alt: The redesigned tile, built on one consistent ring structure
+        caption: >-
+          The ring established a consistent structure for the tile, with the content and status
+          changing according to the project.
+
+  - type: note
+    title: >-
+      Grupo NGN acquired CueFit and the team behind it. We then began shaping the product into what
+      would become NGN Insights.
+
+  - type: decision
+    eyebrow: NGN INSIGHTS
+    title: The visual system became part of the product
+    columns:
+      - >-
+        As CueFit became NGN Insights, the visual system moved into the product itself, allowing
+        users to create and configure their own tiles directly in the platform.
+    plates:
+      - image: visualcue/4 The final concept for a tile that could be configured directly inside the product.jpg
+        alt: The final tile concept, with its KPI slots, text fields and status mapped out
+        caption: >-
+          The tile was defined through a fixed set of content areas: twelve KPI slots, four text
+          fields, and one status.
+      - image: visualcue/5 The concept brought into the product, with the tile being built and configured directly in the platform.jpg
+        alt: The tile editor inside the platform, with slots to fill
+        caption: >-
+          The editor followed the same structure as the tile, giving users defined fields to
+          configure rather than requiring a custom layout for each project.
+
+  - type: decision
+    eyebrow: IMPLEMENTATION
+    title: Making data work simpler
+    columns:
+      - >-
+        What once required custom development could now be done visually inside the product. Data
+        could be connected, combined, and transformed through an interface designed to make the
+        underlying logic accessible.
+    plates:
+      - image: visualcue/6 data base - data source - excel.jpg
+        alt: Connecting a data source inside the product, from a database or a spreadsheet
+        caption: A data source could be connected and configured directly through the interface.
+      - image: visualcue/7. Prepare  Selecionar campos, tratar dados, transformar estrutura.jpg
+        alt: Mapping fields, types and keys in the preparation interface
+        caption: Fields, types, and keys could be mapped as part of the configuration process.
+      - image: visualcue/8 Making data work simpler.jpg
+        alt: Calculations and comparisons defined by the user inside the product
+        caption: >-
+          Users could define calculations and comparisons through the product, without requiring a
+          separate development step.
+
+  - type: decision
+    eyebrow: AGENT EXPERIENCE
+    title: The agent screen became part of the product
+    columns:
+      - >-
+        Agents could see their own performance in a much richer way in NGN Insights, with real-time
+        information, context, and feedback built into the product.
+    plates:
+      - image: visualcue/9 Agent Experience.jpg
+        alt: The agent screen, with the agent's photograph at the centre of the tile
+        caption: >-
+          With the tile structure established, the center could also accommodate an agent
+          photograph alongside their performance data.
+
+  - type: table
+    eyebrow: PRODUCT EVOLUTION
+    columns: ["Stage", "Product", "Visual system", "Implementation"]
+    rows:
+      - ["Starting point", "VisualCue", "Artistic / highly customized", "Custom work"]
+      - ["Making it repeatable", "CueFit", "Repeatable visual system", "Custom work"]
+      - ["Making it configurable", "NGN Insights", "Configurable in-product system", "In-product configuration"]
+
+  - type: media
+    image: visualcue/10 Final Image.png
+    alt: NGN Insights in use, closing the case

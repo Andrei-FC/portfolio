@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build output and caches
+dist/
+.astro/
+.vercel/
+.netlify/
+
+# Editor / OS
+.DS_Store
+*.local
+.claude/settings.local.json
+
+# Archives of the project itself
+*.zip

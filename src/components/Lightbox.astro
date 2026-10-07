@@ -1,0 +1,82 @@
+---
+import { t, type Locale } from "../i18n/ui";
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+---
+<dialog class="lightbox" aria-label={tr("lightbox.close")}>
+  <button class="lightbox__close t-label" type="button" data-close>{tr("lightbox.close")} ✕</button>
+  <div class="lightbox__stage" data-stage>
+    <img class="lightbox__img" alt="" data-img />
+  </div>
+</dialog>
+
+<style>
+  .lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; padding: 0; border: 0; background: var(--surface-inverse); }
+  .lightbox::backdrop { background: rgb(0 0 0 / 0.8); }
+  .lightbox__close {
+    position: fixed; top: var(--space-text); right: var(--space-text); z-index: 2;
+    background: var(--surface-raised); color: var(--text-primary);
+    border: 0; border-radius: var(--radius-pill);
+    padding: var(--space-tight) var(--space-text); cursor: pointer;
+  }
+  .lightbox__stage { width: 100%; height: 100%; overflow: auto; overscroll-behavior: contain; display: grid; place-items: center; touch-action: pan-x pan-y pinch-zoom; }
+  .lightbox__img { max-width: 100%; max-height: 100dvh; cursor: zoom-in; transform-origin: 0 0; }
+  .lightbox__img.is-zoomed { max-width: none; max-height: none; width: auto; cursor: grab; }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>(".lightbox");
+  if (dialog) {
+    const img = dialog.querySelector<HTMLImageElement>("[data-img]")!;
+    const stage = dialog.querySelector<HTMLElement>("[data-stage]")!;
+    const closeBtn = dialog.querySelector<HTMLButtonElement>("[data-close]")!;
+    let opener: HTMLElement | null = null;
+
+    const open = (src: string, alt: string, from: HTMLElement) => {
+      opener = from;
+      img.src = src;
+      img.alt = alt;
+      img.classList.remove("is-zoomed");
+      dialog.showModal();
+      closeBtn.focus();
+    };
+
+    document.querySelectorAll<HTMLElement>("[data-lightbox]").forEach((el) => {
+      el.addEventListener("click", () =>
+        open(el.dataset.full || "", el.dataset.alt || "", el)
+      );
+    });
+
+    // Click toggles 1:1 zoom, then the stage scrolls. Pinch works natively on touch.
+    img.addEventListener("click", (event) => {
+      const zoomed = img.classList.toggle("is-zoomed");
+      if (zoomed) {
+        const rect = img.getBoundingClientRect();
+        const rx = (event.clientX - rect.left) / rect.width;
+        const ry = (event.clientY - rect.top) / rect.height;
+        requestAnimationFrame(() => {
+          stage.scrollLeft = rx * stage.scrollWidth - stage.clientWidth / 2;
+          stage.scrollTop = ry * stage.scrollHeight - stage.clientHeight / 2;
+        });
+      }
+    });
+
+    // Drag to pan while zoomed.
+    let dragging = false, sx = 0, sy = 0, sl = 0, st = 0;
+    stage.addEventListener("pointerdown", (e) => {
+      if (!img.classList.contains("is-zoomed")) return;
+      dragging = true; sx = e.clientX; sy = e.clientY; sl = stage.scrollLeft; st = stage.scrollTop;
+      stage.setPointerCapture(e.pointerId);
+    });
+    stage.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      stage.scrollLeft = sl - (e.clientX - sx);
+      stage.scrollTop = st - (e.clientY - sy);
+    });
+    stage.addEventListener("pointerup", () => { dragging = false; });
+
+    closeBtn.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("close", () => { opener?.focus(); img.removeAttribute("src"); });
+  }
+</script>

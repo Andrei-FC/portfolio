@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import { t, type Locale } from "../i18n/ui";
+
+interface Props {
+  image?: string;
+  alt?: string;
+  caption?: string;
+  locale: Locale;
+  /* Half-width when two plates share a row, so the srcset is not oversized. */
+  half?: boolean;
+}
+const { image, alt = "", caption, locale, half = false } = Astro.props;
+const tr = t(locale);
+
+const files = import.meta.glob<{ default: ImageMetadata }>("/src/assets/cases/**/*.{png,jpg,jpeg,webp,avif}");
+const key = image ? `/src/assets/cases/${image}` : null;
+const loader = key ? files[key] : undefined;
+const asset = loader ? (await loader()).default : null;
+---
+<figure class="plate">
+  {asset ? (
+    <button class="plate__button" type="button" data-lightbox data-full={asset.src} data-alt={alt}>
+      <Image
+        src={asset}
+        alt={alt}
+        widths={half ? [390, 624, 1248] : [390, 760, 1272, 2544]}
+        sizes={half ? "(max-width: 760px) 100vw, 624px" : "(max-width: 760px) 100vw, 1272px"}
+      />
+    </button>
+  ) : (
+    <div class="plate__placeholder" role="img" aria-label={alt || "Image pending"}></div>
+  )}
+  <figcaption class="plate__meta">
+    <!-- The hint is spelled out only where there is no hover to reveal it. -->
+    {asset && <span class="t-label muted plate__hint">{tr("case.enlarge")} ↗</span>}
+    {caption && <span class="t-caption muted">{caption}</span>}
+  </figcaption>
+</figure>
+
+<style>
+  .plate { display: flex; flex-direction: column; gap: var(--space-text); }
+  .plate__button {
+    padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%;
+    border-radius: var(--radius-figure); overflow: hidden;
+  }
+  .plate__button img { width: 100%; height: auto; }
+  .plate__placeholder {
+    aspect-ratio: 1272 / 720;
+    background: var(--neutral-200);
+    border-radius: var(--radius-figure);
+  }
+  .plate__meta { display: flex; flex-direction: column; gap: var(--space-text); }
+  .plate__hint { display: none; }
+  @media (max-width: 760px) {
+    .plate__hint { display: block; }
+  }
+</style>

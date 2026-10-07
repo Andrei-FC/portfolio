@@ -1,0 +1,92 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import ProjectCard from "../ProjectCard.astro";
+import portrait from "../../assets/andrei-hero.png";
+import type { Locale } from "../../i18n/ui";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const cases = (await getCollection("cases", (e) => e.id.startsWith(`${locale}/`)))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const copy = {
+  en: {
+    role: "Product Designer",
+    line1: "19 years of design experience, the last 9 working remotely with US companies",
+    line2: "Always designing, in one form or another",
+    alt: "Andrei Carvalho"
+  },
+  pt: {
+    role: "Product Designer",
+    line1: "19 anos de experiência em design, os últimos 9 trabalhando remotamente com empresas dos EUA",
+    line2: "Sempre desenhando, de uma forma ou de outra",
+    alt: "Andrei Carvalho"
+  }
+}[locale];
+---
+<Base locale={locale} title="Andrei Carvalho — Product Designer" description={copy.line1} path="/">
+  <!-- The hero has no band padding: the cut-out stands on the section's own floor. -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="stack stack--element hero__copy">
+        <h1 class="t-voice hero__title">{copy.role}</h1>
+        <div class="stack stack--text hero__paras">
+          <p class="t-body-l">{copy.line1}</p>
+          <p class="t-body-l muted">{copy.line2}</p>
+        </div>
+      </div>
+      <Image class="hero__portrait" src={portrait} alt={copy.alt} widths={[413, 826]} sizes="(max-width: 760px) 70vw, 413px" />
+    </div>
+  </section>
+
+  <section class="band--tight inverse">
+    <div class="container cases">
+      {cases.map((c) => (
+        <ProjectCard
+          locale={locale}
+          slug={c.data.slug}
+          accent={c.data.accent}
+          org={c.data.org}
+          cardTitle={c.data.cardTitle}
+          description={c.data.description}
+          cover={c.data.cover}
+        />
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Its own narrower container: 1056 centred, not the 1272 the rest of the site uses. */
+  .hero__inner {
+    width: min(1056px, 100% - 2 * var(--page-margin));
+    margin-inline: auto;
+    min-height: 673px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--space-group);
+  }
+  /* The title runs past the paragraph column rather than wrapping, as in the file. */
+  .hero__title { white-space: nowrap; }
+  .hero__paras { max-width: 472px; }
+  .hero__portrait { width: 413px; height: auto; align-self: end; }
+
+  @media (max-width: 900px) {
+    .hero__inner {
+      min-height: 0;
+      grid-template-columns: 1fr;
+      padding-block: var(--space-block) 0;
+      gap: var(--space-group);
+    }
+    .hero__title { white-space: normal; }
+    .hero__paras { max-width: none; }
+    .hero__portrait { width: min(70vw, 413px); justify-self: center; }
+  }
+
+  .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); align-items: stretch; }
+  @media (max-width: 1000px) { .cases { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 760px) { .cases { grid-template-columns: 1fr; gap: var(--space-element); } }
+</style>

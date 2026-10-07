@@ -1,0 +1,100 @@
+slug: pace-acx
+order: 3
+accent: pace
+org: Grupo NGN
+title: A technical limitation turned into a design award
+cardTitle: Problem Solving
+description: >-
+  The platform provided by the event organizers was built for images and text. We wouldn't be able
+  to bring the interaction we most wanted to the booth — EngageNow — until I discovered that its
+  rich text field would render raw HTML. That small opening changed what the booth could become.
+meta:
+  role: Product Designer
+  scope: Booth design and front-end, start to finish
+  period: October 2020
+  platforms: Cloud Conventions
+cover:
+  image: pace/1 - Engage now interaction.jpg
+  alt: The EngageNow interaction running inside the virtual booth
+  caption: The finished booth, with live interaction built into the experience.
+stats: []
+blocks:
+  - type: decision
+    size: l
+    eyebrow: THE BRIEF
+    title: Everyone got the same box
+    columns:
+      - >-
+        October 2020. The industry's telecom fair was going virtual in a hurry, using an event
+        platform that gave every exhibitor the same container. What was asked of design was
+        simple: a set of JPGs — product images to drop into the booth.
+      - >-
+        I came to it with only a few days left on the clock. The obvious path was to work within
+        the platform's constraints and deliver the assets. But before accepting those limits, I
+        wanted to understand what the platform could actually do.
+
+  - type: decision
+    eyebrow: THE OPENING
+    title: I started pulling the platform apart
+    columns:
+      - |-
+        The HTML was only the beginning. I started inspecting the platform itself, looking for places where its defaults could be overridden.
+
+        The profile image, page background, spacing and colors — details that seemed fixed — could actually be customized by targeting the platform's own selectors and applying my own styles. This gave me control over parts of the booth that the standard interface didn't expose.
+    plates:
+      - image: pace/2 - Overriding the platform’s default styles.jpg
+        alt: The platform's own CSS classes listed in a stylesheet, each one overridden
+        caption: The platform's own classes, mapped in the stylesheet to override the defaults.
+
+  - type: decision
+    eyebrow: THE WORKAROUND
+    title: JavaScript got in the way
+    columns:
+      - |-
+        The platform didn't allow JavaScript to run directly inside the booth, and JavaScript was essential to make the EngageNow interaction work.
+
+        So I moved the logic outside the platform. I hosted the JavaScript on an external server and loaded it through an iframe inside the booth, giving the interaction a way to run without changing the platform itself.
+    plates:
+      - image: pace/3 - Integration Scheme.jpg
+        alt: Diagram of the integration, with the script hosted outside and loaded through an iframe
+        caption: The external JavaScript loaded through an iframe inside the booth.
+
+  - type: decision
+    eyebrow: THE BUILD
+    title: I built the booth like a website
+    columns:
+      - |-
+        I took the experience from concept to code myself. Starting in Adobe XD, I designed the booth as a web experience rather than a collection of static assets, then built it with HTML, CSS and JavaScript.
+
+        The result was a fully customized booth experience — designed, built and adapted to work within the platform's constraints.
+    plates:
+      - image: pace/4 - A basic booth transformed into a living web experience.jpg
+        alt: The finished booth, built as a three-page site inside the platform
+        caption: Three pages, one stylesheet, all running inside the platform's rich text field.
+
+  - type: split
+    eyebrow: RESULT
+    title: Best in Show — and the only booth with live interaction
+    text: >-
+      The booth took Best in Show, judged by an independent industry jury. It was also the only
+      booth at the fair where visitors could click through and speak to a person live, inside an
+      environment where voice interaction had never been part of the original platform experience.
+    image: pace/best-in-show.png
+    alt: PACE ACX Virtual 2020 Best in Show award badge
+
+  - type: decision
+    size: l
+    eyebrow: A LATE COINCIDENCE
+    title: A month later, the platform's CEO was looking at the same wall.
+    columns:
+      - >-
+        On 19 November 2020, weeks after the fair, Convey announced Cloud Exhibit — a portable
+        booth an exhibitor could carry to any event. Its CEO described the problem from the
+        vendor's side of the table: event platforms built around a one-size-fits-all model,
+        exhibitors with little say in which platform a show chooses, and limited control over
+        branding, messaging and interaction.
+      - Weeks apart, we had arrived at the same problem from opposite sides of the table.
+    source:
+      citation: "“Convey Services Launches Cloud Exhibit” — AiThority, 19 November 2020"
+      url: aithority.com/it-and-devops/cloud/convey-services-launches-cloud-exhibit
+      href: https://aithority.com/it-and-devops/cloud/convey-services-launches-cloud-exhibit/
