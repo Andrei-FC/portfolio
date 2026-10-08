@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://andreicarvalho.pages.dev",
+  site: "https://andreicarvalho.com",
   i18n: {
     locales: ["en", "pt"],
     defaultLocale: "en",
