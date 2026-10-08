@@ -58,7 +58,6 @@ const block = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("table"),
     eyebrow: z.string().optional(),
-    scroll: z.boolean().default(false),
     columns: z.array(z.string()),
     rows: z.array(z.array(z.string()))
   })
