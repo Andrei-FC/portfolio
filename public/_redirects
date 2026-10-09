@@ -2,3 +2,6 @@
 # depends on an HTML page to do the forwarding.
 /en/*  /:splat  301
 /en    /        301
+
+# The CV answered at /cv.pdf for a while and that URL is already out there.
+/cv.pdf  /Andrei-Carvalho-CV.pdf  301
