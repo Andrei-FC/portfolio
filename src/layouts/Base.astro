@@ -27,6 +27,23 @@ const other = otherLocale(locale);
     <link rel="alternate" hreflang={locale} href={new URL(localePath(locale, path), Astro.site)} />
     <link rel="alternate" hreflang={other} href={new URL(localePath(other, path), Astro.site)} />
     <link rel="alternate" hreflang="x-default" href={new URL(localePath("en", path), Astro.site)} />
+
+    {/* Google Analytics. is:inline keeps Astro from bundling these — the snippet
+        has to reach the page verbatim, in this order, for gtag to exist when the
+        second script runs. Left out of `astro dev` so clicking around locally
+        does not show up as traffic. */}
+    {import.meta.env.PROD && (
+      <>
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-GFJ7YGH8HH"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-GFJ7YGH8HH');
+        </script>
+      </>
+    )}
   </head>
   <body>
     <Header locale={locale} inverse={inverseHeader} />
