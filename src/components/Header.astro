@@ -67,6 +67,11 @@ const openCase = cases.find((c) => path.startsWith(localePath(locale, `/work/${c
   </div>
 
   <div class="mobile-menu surface-light" id="mobile-menu" hidden>
+    <!-- Home only exists here: on desktop the brand is the way back. -->
+    <a class="mobile-row t-body-m" href={home} aria-current={isHome ? "page" : undefined}>{tr("nav.home")}</a>
+    <a class="mobile-row t-body-m" href={about} aria-current={isAbout ? "page" : undefined}>{tr("nav.about")}</a>
+    <a class="mobile-row t-body-m" href="#contact">{tr("nav.contact")}</a>
+    <div class="mobile-menu__divider"></div>
     <p class="t-label eyebrow mobile-menu__label">{tr("nav.cases")}</p>
     {cases.map((c) => (
       <a
@@ -78,11 +83,6 @@ const openCase = cases.find((c) => path.startsWith(localePath(locale, `/work/${c
         <span class="t-caption muted">{c.data.org}</span>
       </a>
     ))}
-    <div class="mobile-menu__divider"></div>
-    <!-- Home only exists here: on desktop the brand is the way back. -->
-    <a class="mobile-row t-body-m" href={home} aria-current={isHome ? "page" : undefined}>{tr("nav.home")}</a>
-    <a class="mobile-row t-body-m" href={about} aria-current={isAbout ? "page" : undefined}>{tr("nav.about")}</a>
-    <a class="mobile-row t-body-m" href="#contact">{tr("nav.contact")}</a>
   </div>
 </header>
 
