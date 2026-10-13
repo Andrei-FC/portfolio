@@ -104,8 +104,8 @@ blocks:
           Um conjunto de fundações sob duas bibliotecas, e todas as superfícies que saem delas —
           produto e marketing.
       - image: handygolf/9 App system.jpg
-        alt: O design system e a biblioteca de componentes iOS compartilhados pelos dois apps
-        caption: O design system e a biblioteca de componentes iOS, compartilhados pelos apps do golfista e do coach.
+        alt: O design system e a biblioteca de componentes mobile compartilhados pelos dois apps
+        caption: O design system e a biblioteca de componentes mobile, compartilhados pelos apps do golfista e do coach.
       - image: handygolf/10 Web System.jpg
         alt: O design system e a biblioteca web por trás da biblioteca de conteúdo e do template do coach
         caption: >-

@@ -101,8 +101,8 @@ blocks:
           One set of foundations under two libraries, and every surface that comes off them —
           products and marketing alike.
       - image: handygolf/9 App system.jpg
-        alt: The iOS design system and component library shared by both apps
-        caption: The iOS design system and component library, shared by the golfer and coach apps.
+        alt: The mobile design system and component library shared by both apps
+        caption: The mobile design system and component library, shared by the golfer and coach apps.
       - image: handygolf/10 Web System.jpg
         alt: The web design system and component library behind the content library and the coach template
         caption: >-
