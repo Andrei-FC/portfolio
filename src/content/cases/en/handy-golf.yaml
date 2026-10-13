@@ -93,7 +93,7 @@ blocks:
     eyebrow: THE ECOSYSTEM
     title: How everything connects
     columns:
-      - Four connected surfaces, each with its own role, platform, and audience.
+      - Connected surfaces, each with its own role, platform, and audience.
     plates:
       - image: handygolf/8 Ecosystem scheme.jpg
         alt: "Dependency diagram: foundations feeding an app library and a web library, and the products and marketing surfaces downstream of each"

@@ -96,7 +96,7 @@ blocks:
     eyebrow: O ECOSSISTEMA
     title: Como tudo se conecta
     columns:
-      - Quatro superfícies conectadas, cada uma com seu papel, plataforma e público.
+      - Superfícies conectadas, cada uma com seu papel, plataforma e público.
     plates:
       - image: handygolf/8 Ecosystem scheme.jpg
         alt: "Diagrama de dependências: as fundações alimentando uma biblioteca de app e uma de web, e os produtos e superfícies de marketing que descem de cada uma"
