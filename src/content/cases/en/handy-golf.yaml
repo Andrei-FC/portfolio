@@ -96,8 +96,10 @@ blocks:
       - Four connected surfaces, each with its own role, platform, and audience.
     plates:
       - image: handygolf/8 Ecosystem scheme.jpg
-        alt: The four surfaces organized by audience and platform, with their color tokens
-        caption: The four surfaces organized by audience and platform, with the color tokens each one uses.
+        alt: "Dependency diagram: foundations feeding an app library and a web library, and the products and marketing surfaces downstream of each"
+        caption: >-
+          One set of foundations under two libraries, and every surface that comes off them —
+          products and marketing alike.
       - image: handygolf/9 App system.jpg
         alt: The iOS design system and component library shared by both apps
         caption: The iOS design system and component library, shared by the golfer and coach apps.

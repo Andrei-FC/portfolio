@@ -99,10 +99,10 @@ blocks:
       - Quatro superfícies conectadas, cada uma com seu papel, plataforma e público.
     plates:
       - image: handygolf/8 Ecosystem scheme.jpg
-        alt: As quatro superfícies organizadas por público e plataforma, com seus tokens de cor
+        alt: "Diagrama de dependências: as fundações alimentando uma biblioteca de app e uma de web, e os produtos e superfícies de marketing que descem de cada uma"
         caption: >-
-          As quatro superfícies organizadas por público e plataforma, com os tokens de cor que
-          cada uma usa.
+          Um conjunto de fundações sob duas bibliotecas, e todas as superfícies que saem delas —
+          produto e marketing.
       - image: handygolf/9 App system.jpg
         alt: O design system e a biblioteca de componentes iOS compartilhados pelos dois apps
         caption: O design system e a biblioteca de componentes iOS, compartilhados pelos apps do golfista e do coach.
