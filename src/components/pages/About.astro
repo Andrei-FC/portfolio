@@ -46,7 +46,10 @@ const copy = {
       ["Looking for", "Head of Design and Product Design"]
     ],
     beyondEyebrow: "Beyond design",
-    beyond: "Husband. Dad of two. Always building, learning, or competing at something. Still curious about how things work"
+    beyondLines: [
+      "Husband. Dad of two. Always building, learning, or competing at something.",
+      "Still curious about how things work"
+    ]
   },
   pt: {
     claim: "Design é como eu faço as coisas serem entendidas",
@@ -73,7 +76,10 @@ const copy = {
       ["Procurando por", "Head of Design e Product Design"]
     ],
     beyondEyebrow: "Além do design",
-    beyond: "Marido. Pai de dois. Sempre construindo, aprendendo ou competindo em alguma coisa. Ainda curioso sobre como as coisas funcionam"
+    beyondLines: [
+      "Marido. Pai de dois. Sempre construindo, aprendendo ou competindo em alguma coisa.",
+      "Ainda curioso sobre como as coisas funcionam"
+    ]
   }
 }[locale];
 ---
@@ -108,7 +114,7 @@ const copy = {
     <div class="container stack stack--element">
       <p class="t-display-l about-proof">{copy.proof}</p>
       <p class="t-body-m muted">
-        {copy.proofLines.map((line) => <span class="about-proof__line">{line}</span>)}
+        {copy.proofLines.map((line) => <span class="own-line">{line}</span>)}
       </p>
     </div>
   </section>
@@ -148,7 +154,9 @@ const copy = {
 
       <div class="stack stack--text">
         <span class="t-label eyebrow">{copy.beyondEyebrow}</span>
-        <p class="t-body-m about-beyond">{copy.beyond}</p>
+        <p class="t-body-m about-beyond">
+          {copy.beyondLines.map((line) => <span class="own-line">{line}</span>)}
+        </p>
       </div>
     </div>
   </section>
@@ -191,7 +199,9 @@ const copy = {
   .about-col, .about-beyond { max-width: 624px; }
   /* 8 columns, like a case title. */
   .about-proof { max-width: 840px; }
-  .about-proof__line { display: block; }
+  /* Breaks that are editorial, not a consequence of the measure: these lines
+     start fresh at every width. */
+  .own-line { display: block; }
 
   /* 2 / 4 / 3 / 3 of the twelve, as the file lays it out. */
   .traj__row {
