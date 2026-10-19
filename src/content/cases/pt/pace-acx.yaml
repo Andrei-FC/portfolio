@@ -2,101 +2,109 @@ slug: pace-acx
 order: 3
 accent: pace
 org: Grupo NGN
-title: Uma limitação técnica virou um prêmio de design
+title: Uma limitação técnica que virou um projeto premiado
 cardTitle: Resolução de problemas
 description: >-
-  A plataforma fornecida pelos organizadores do evento foi feita para imagens e texto. Não
-  conseguiríamos levar ao estande a interação que mais queríamos — o EngageNow — até eu descobrir
-  que o campo de rich text renderizava HTML puro. Essa pequena brecha mudou o que o estande podia
-  ser.
+  A plataforma do evento aceitava basicamente imagens e texto. Parecia que não seria possível
+  incluir no estande a interação que queríamos oferecer com o EngageNow, até eu descobrir que o
+  campo de texto rico aceitava HTML. Essa brecha mudou o que era possível construir.
 meta:
   role: Product Designer
-  scope: Design do estande e front-end, do começo ao fim
+  scope: Design e desenvolvimento front-end do estande, de ponta a ponta
   period: Outubro de 2020
   platforms: Cloud Conventions
 cover:
   image: pace/1 - Engage now interaction.jpg
   alt: O estande finalizado, com a interação ao vivo do EngageNow
-  caption: O estande finalizado, com interação ao vivo embutida na experiência.
+  caption: O estande finalizado, com interação ao vivo integrada à experiência.
 stats: []
 blocks:
   - type: decision
     size: l
     eyebrow: O BRIEFING
-    title: Todo mundo ganhou a mesma caixa
+    title: Todos os expositores partiram das mesmas limitações
     columns:
       - >-
-        Outubro de 2020. A feira de telecom do setor estava indo para o virtual às pressas, usando
-        uma plataforma de eventos que dava a todo expositor o mesmo contêiner. O que se pediu ao
-        design era simples: um conjunto de JPGs — imagens de produto para colocar no estande.
+        Em outubro de 2020, uma feira do setor de telecomunicações precisou migrar às pressas para o
+        formato virtual. A plataforma de eventos oferecia a todos os expositores a mesma estrutura.
+        A demanda para o design era simples: produzir imagens JPG dos produtos para compor o
+        estande.
       - >-
-        Cheguei com poucos dias no relógio. O caminho óbvio era trabalhar dentro das restrições da
-        plataforma e entregar os arquivos. Mas antes de aceitar esses limites, eu queria entender
-        o que a plataforma de fato conseguia fazer.
-
+        Eu tinha poucos dias para concluir o trabalho. O caminho mais direto seria respeitar as
+        limitações da plataforma e entregar as imagens. Antes disso, porém, quis entender o que ela
+        realmente permitia fazer.
   - type: decision
     eyebrow: A BRECHA
-    title: Comecei a desmontar a plataforma
+    title: Investiguei o que a plataforma permitia fazer
     columns:
-      - |-
-        O HTML era só o começo. Passei a inspecionar a própria plataforma, procurando lugares onde os padrões dela pudessem ser sobrescritos.
+      - >-
+        O HTML foi só o começo. Inspecionei a plataforma para descobrir quais elementos e estilos
+        poderiam ser personalizados.
 
-        A imagem de perfil, o fundo da página, espaçamentos e cores — detalhes que pareciam fixos — podiam ser customizados mirando os seletores da própria plataforma e aplicando meus estilos. Isso me deu controle sobre partes do estande que a interface padrão não expunha.
+
+        A imagem de perfil, o fundo da página, espaçamentos e cores — detalhes que pareciam fixos —
+        podiam ser customizados mirando os seletores da própria plataforma e aplicando meus estilos.
+        Isso me deu controle sobre partes do estande que a interface padrão não expunha.
     plates:
       - image: pace/2 - Overriding the platform’s default styles.jpg
         alt: As classes CSS da própria plataforma mapeadas na folha de estilo
-        caption: As classes da própria plataforma, mapeadas na folha de estilo para sobrescrever os padrões.
-
+        caption: Classes CSS da plataforma identificadas e usadas para substituir os estilos padrão.
   - type: decision
     eyebrow: A SOLUÇÃO DE CONTORNO
-    title: O JavaScript atrapalhou
+    title: Como contornar a restrição ao JavaScript
     columns:
-      - |-
-        A plataforma não permitia rodar JavaScript direto dentro do estande, e o JavaScript era essencial para a interação do EngageNow funcionar.
+      - >-
+        A plataforma não permitia executar JavaScript diretamente no estande, mas esse código era
+        essencial para fazer o EngageNow funcionar.
 
-        Então movi a lógica para fora da plataforma. Hospedei o JavaScript num servidor externo e carreguei por um iframe dentro do estande, dando à interação um jeito de rodar sem mexer na plataforma.
+
+        Então movi a lógica para fora da plataforma. Hospedei o JavaScript num servidor externo e
+        carreguei por um iframe dentro do estande, dando à interação um jeito de rodar sem mexer na
+        plataforma.
     plates:
       - image: pace/3 - Integration Scheme.jpg
         alt: Diagrama da integração, com o JavaScript externo carregado por um iframe
-        caption: O JavaScript externo carregado por um iframe dentro do estande.
-
+        caption: Código JavaScript hospedado externamente e carregado no estande por um iframe.
   - type: decision
     eyebrow: A CONSTRUÇÃO
-    title: Construí o estande como um site
+    title: Um estande virtual construído como um site
     columns:
-      - |-
-        Levei a experiência do conceito ao código sozinho. Começando no Adobe XD, desenhei o estande como uma experiência web em vez de um punhado de arquivos estáticos, e depois construí com HTML, CSS e JavaScript.
+      - >-
+        Cuidei de todo o processo, do conceito ao código. Comecei no Adobe XD, desenhando o estande
+        como uma experiência web, e depois desenvolvi tudo com HTML, CSS e JavaScript, em vez de
+        entregar apenas um conjunto de imagens estáticas.
 
-        O resultado foi uma experiência de estande totalmente customizada — desenhada, construída e adaptada para funcionar dentro das restrições da plataforma.
+
+        O resultado foi uma experiência de estande totalmente customizada — desenhada, construída e
+        adaptada para funcionar dentro das restrições da plataforma.
     plates:
       - image: pace/4 - A basic booth transformed into a living web experience.jpg
         alt: As três páginas do estande, construídas como um site dentro da plataforma
-        caption: Três páginas, uma folha de estilo, tudo rodando dentro do campo de rich text da plataforma.
-
+        caption: >-
+          Três páginas e uma folha de estilos, funcionando dentro do campo de texto rico da
+          plataforma.
   - type: split
     eyebrow: RESULTADO
     title: Best in Show — e o único estande com interação ao vivo
     text: >-
-      O estande levou o Best in Show, julgado por um júri independente do setor. Foi também o
-      único estande da feira onde o visitante podia clicar e falar ao vivo com uma pessoa, dentro
-      de um ambiente onde interação por voz nunca fez parte da experiência original da
-      plataforma.
+      O estande recebeu o prêmio Best in Show, concedido por um júri independente do setor. Também
+      foi o único da feira a permitir que visitantes clicassem para conversar ao vivo com alguém —
+      uma interação por voz que não fazia parte dos recursos originais da plataforma.
     image: pace/best-in-show.png
     alt: Selo do prêmio Best in Show do PACE ACX Virtual 2020
-
   - type: decision
     size: l
-    eyebrow: UMA COINCIDÊNCIA TARDIA
-    title: Um mês depois, o CEO da plataforma olhava para a mesma parede.
+    eyebrow: UMA COINCIDÊNCIA
+    title: Um mês depois, o CEO da plataforma identificou o mesmo problema.
     columns:
       - >-
-        Em 19 de novembro de 2020, semanas depois da feira, a Convey anunciou o Cloud Exhibit —
-        um estande portátil que o expositor podia levar para qualquer evento. O CEO descreveu o
-        problema do lado do fornecedor da mesa: plataformas de evento construídas em torno de um
-        modelo de tamanho único, expositores com pouca voz sobre qual plataforma a feira escolhe,
-        e controle limitado sobre marca, mensagem e interação.
-      - Com semanas de diferença, chegamos ao mesmo problema por lados opostos da mesa.
+        Em 19 de novembro de 2020, algumas semanas depois da feira, a Convey anunciou o Cloud
+        Exhibit, um estande virtual portátil que os expositores poderiam levar para diferentes
+        eventos. Ao apresentar a solução, o CEO apontou limitações semelhantes: plataformas
+        padronizadas, pouca influência dos expositores na escolha da tecnologia e pouco controle
+        sobre marca, mensagem e interação.
+      - Com poucas semanas de diferença, identificamos o mesmo problema, cada um de um lado da mesa.
     source:
-      citation: "“Convey Services Launches Cloud Exhibit” — AiThority, 19 de novembro de 2020"
+      citation: “Convey Services Launches Cloud Exhibit” — AiThority, 19 de novembro de 2020
       url: aithority.com/it-and-devops/cloud/convey-services-launches-cloud-exhibit
       href: https://aithority.com/it-and-devops/cloud/convey-services-launches-cloud-exhibit/

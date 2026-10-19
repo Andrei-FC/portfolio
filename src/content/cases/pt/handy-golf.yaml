@@ -2,13 +2,13 @@ slug: handy-golf
 order: 1
 accent: handy-golf
 org: Handy Golf
-title: Um web app de golfe virou um ecossistema
+title: De um web app de golfe a um ecossistema de produtos
 cardTitle: Ecossistema integrado
 description: >-
-  O que começou como um produto de golfe relativamente pequeno se expandiu em aplicativos para
-  golfistas e coaches, uma biblioteca de conteúdo e templates de site para coach. Desenhei as
-  diferentes partes conforme elas apareciam, mantendo todas conectadas entre plataformas,
-  públicos e temas visuais.
+  O que começou como um pequeno produto de golfe cresceu e deu origem a apps para golfistas e
+  coaches, uma biblioteca de conteúdo e modelos de sites para coaches. Fui desenhando cada parte à
+  medida que o produto evoluía, mantendo a experiência conectada entre plataformas, públicos e
+  identidades visuais.
 meta:
   role: Head of Design
   scope: Design de produto em todo o ecossistema
@@ -16,98 +16,110 @@ meta:
   platforms: iOS · Web
 cover:
   image: handygolf/1 Handy Golf Ecosystem.jpg
-  alt: As quatro superfícies do Handy Golf lado a lado — app do golfista, app do coach, biblioteca de conteúdo e site do coach
-  caption: Quatro superfícies de produto entre iOS e web.
+  alt: >-
+    As quatro superfícies do Handy Golf lado a lado — app do golfista, app do coach, biblioteca de
+    conteúdo e site do coach
+  caption: Quatro frentes do produto, entre iOS e web.
 stats:
-  - { value: "4 superfícies", label: "App do golfista e do coach, HowTo Library e template de site para coach" }
-  - { value: "Múltiplas plataformas", label: "iOS nativo e web, para públicos e contextos diferentes" }
-  - { value: "Um ecossistema", label: "Uma linguagem visual compartilhada, adaptada a cada ambiente" }
+  - value: 4 superfícies
+    label: App do golfista, app do coach, biblioteca HowTo e modelo de site para coaches
+  - value: Mais de uma plataforma
+    label: App nativo para iOS e produtos web, voltados a públicos e contextos diferentes
+  - value: Um ecossistema
+    label: Uma linguagem visual comum, adaptada às necessidades de cada ambiente
 blocks:
   - type: decision
     eyebrow: O COMEÇO
-    title: Uma ideia simples para aprender golfe
+    title: Uma forma estruturada de aprender golfe
     lede: true
     columns:
       - >-
-        O projeto começou com uma ideia relativamente simples de web app de golfe: um jeito
-        estruturado de aprender através de aulas, séries e outros conteúdos de golfe.
+        O projeto começou como um web app de golfe que organizava o aprendizado em aulas, séries e
+        outros conteúdos.
     plates:
       - image: handygolf/2 First Concepts.jpg
         alt: Primeiros conceitos do web app de golfe, com aulas e séries
-        caption: O web app original, antes das ferramentas de treino, do coaching e da biblioteca de conteúdo.
-
+        caption: >-
+          O web app original, antes da chegada das ferramentas de treino, dos recursos para coaches
+          e da biblioteca de conteúdo.
   - type: note
-    title: Desenhando enquanto tudo se movia
+    title: Projetando enquanto o produto evoluía
     text: >-
-      O produto ainda estava tomando forma enquanto eu desenhava. Novas plataformas, públicos,
-      funcionalidades e necessidades apareciam pelo caminho, então o design tinha que evoluir
-      junto sem perder de vista o que já existia.
-
+      Enquanto eu trabalhava no design, o produto continuava evoluindo. Surgiam novas plataformas,
+      públicos, funcionalidades e necessidades. O desafio era acompanhar essas mudanças sem perder a
+      conexão com o que já havia sido criado.
   - type: decision
-    eyebrow: A EXPANSÃO
-    title: De web app a nativo
+    eyebrow: EXPANSÃO
+    title: Do web app ao app nativo
     columns:
       - >-
-        O web app virou uma experiência iOS nativa, expandindo do aprendizado estruturado para
-        ferramentas de treino, jogos, análise de swing e gravação.
+        O produto ganhou um app nativo para iOS e foi além do aprendizado estruturado, incorporando
+        ferramentas de treino, jogos, análise e gravação do swing.
     plates:
       - image: handygolf/3 App evolved to amobile experience.jpg
         alt: O app como experiência iOS nativa, com aprendizado, treino e análise de swing
-        caption: O app nativo introduziu ferramentas de treino, jogos e gravação de swing.
+        caption: O app nativo trouxe ferramentas de treino, jogos e gravação do swing.
       - image: handygolf/4 Practice Tools built into the app.jpg
         alt: Ferramentas de treino dentro do app, ao lado do conteúdo de aprendizado existente
-        caption: As ferramentas de treino entraram ao lado do conteúdo de aprendizado que já existia.
-
+        caption: >-
+          As ferramentas de treino passaram a conviver com o conteúdo educacional que já fazia parte
+          do produto.
   - type: decision
-    eyebrow: UM NOVO PERSONAGEM
-    title: Os coaches encontraram um lugar no produto
+    eyebrow: UM NOVO PÚBLICO
+    title: Um espaço para os coaches dentro do produto
     columns:
       - >-
-        O Coach App deu aos coaches um lugar para criar os próprios serviços — de aulas
-        presenciais e análise de swing a aulas online — e definir como e onde trabalhavam. Eles
-        também podiam criar o próprio site direto do app, só preenchendo um formulário e
-        escolhendo um tema.
+        Com o Coach App, os coaches passaram a cadastrar seus serviços — de aulas presenciais e
+        análise de swing a aulas online — e definir como trabalhavam. Também podiam criar o próprio
+        site diretamente pelo app: bastava preencher as informações e escolher um tema.
     plates:
       - image: handygolf/5 Coaches App.jpg
         alt: O Coach App, onde coaches criam e configuram os próprios serviços
         caption: >-
-          O app do coach usa a mesma biblioteca de componentes do app do golfista, com cinco
-          tokens adicionais definindo sua camada visual.
+          O app do coach compartilha a biblioteca de componentes do app do golfista, com cinco
+          tokens adicionais para definir sua identidade visual.
       - image: handygolf/6 Coaches Web Template.jpg
         alt: O template de site do coach, montado a partir do conteúdo e do tema escolhidos no app
-        caption: O coach cria o próprio site escolhendo conteúdo e tema dentro do app.
-
+        caption: O coach monta o próprio site escolhendo o conteúdo e o tema no app.
   - type: decision
     eyebrow: BIBLIOTECA DE CONTEÚDO
-    title: O aprendizado virou parte do próprio produto
+    title: O conteúdo de aprendizado passou a fazer parte do produto
     columns:
       - >-
-        A HowTo Library conectou problemas de golfe com as ferramentas que podiam resolvê-los. O
-        golfista podia descobrir uma solução na web e ver como o Handy Golf ajudaria, ou encontrar
-        a mesma orientação direto na funcionalidade correspondente dentro do app.
+        A HowTo Library aproximou dúvidas comuns do golfe das ferramentas que poderiam ajudar a
+        resolvê-las. O golfista podia encontrar uma orientação na web e descobrir como o Handy Golf
+        poderia ajudar, ou acessar essa mesma orientação dentro da funcionalidade correspondente no
+        app.
     plates:
       - image: handygolf/7 How To Library.jpg
         alt: A HowTo Library, cobrindo orientação de funcionalidades e instrução de golfe
         caption: >-
-          A biblioteca cobre tanto orientação sobre as funcionalidades quanto instrução de golfe,
-          organizada em quatro tipos de conteúdo.
-
+          A biblioteca reúne quatro tipos de conteúdo, que vão de tutoriais sobre as funcionalidades
+          a instruções de golfe.
   - type: decision
     eyebrow: O ECOSSISTEMA
     title: Como tudo se conecta
     columns:
-      - Superfícies conectadas, cada uma com seu papel, plataforma e público.
+      - >-
+        Cada frente tem seu papel, sua plataforma e seu público, mas todas fazem parte do mesmo
+        ecossistema.
     plates:
       - image: handygolf/8 Ecosystem scheme.jpg
-        alt: "Diagrama de dependências: as fundações alimentando uma biblioteca de app e uma de web, e os produtos e superfícies de marketing que descem de cada uma"
+        alt: >-
+          Diagrama de dependências: as fundações alimentando uma biblioteca de app e uma de web, e
+          os produtos e superfícies de marketing que descem de cada uma
         caption: >-
-          Um conjunto de fundações sob duas bibliotecas, e todas as superfícies que saem delas —
-          produto e marketing.
+          Uma base compartilhada sustenta duas bibliotecas e as diferentes frentes de produto e
+          marketing que derivam delas.
       - image: handygolf/9 App system.jpg
         alt: O design system e a biblioteca de componentes mobile compartilhados pelos dois apps
-        caption: O design system e a biblioteca de componentes mobile, compartilhados pelos apps do golfista e do coach.
+        caption: >-
+          O design system e a biblioteca de componentes para dispositivos móveis, compartilhados
+          pelos apps do golfista e do coach.
       - image: handygolf/10 Web System.jpg
-        alt: O design system e a biblioteca web por trás da biblioteca de conteúdo e do template do coach
+        alt: >-
+          O design system e a biblioteca web por trás da biblioteca de conteúdo e do template do
+          coach
         caption: >-
           O design system e a biblioteca de componentes web, compartilhados pela biblioteca de
-          conteúdo e pelo template de site do coach.
+          conteúdo e pelo modelo de site do coach.
