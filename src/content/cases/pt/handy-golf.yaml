@@ -21,10 +21,10 @@ cover:
     conteúdo e site do coach
   caption: Quatro frentes do produto, entre iOS e web.
 stats:
+  - value: 2+ anos
+    label: Um designer em todas as superfícies
   - value: 4 superfícies
-    label: App do golfista, app do coach, biblioteca HowTo e modelo de site para coaches
-  - value: Mais de uma plataforma
-    label: App nativo para iOS e produtos web, voltados a públicos e contextos diferentes
+    label: App do golfista, app do coach, HowTo Library e modelo de site para coaches
   - value: Um ecossistema
     label: Uma linguagem visual comum, adaptada às necessidades de cada ambiente
 blocks:
@@ -81,7 +81,7 @@ blocks:
         alt: >-
           O card de atividade: nove variações acumuladas de um lado, três formas e três fundos do
           outro
-        caption: Seis variações do lado antigo. Três formas e três fundos do novo.
+        caption: Nove variações do lado antigo. Três formas e três fundos do novo.
   - type: decision
     eyebrow: EXPANSÃO
     title: Do web app ao app nativo

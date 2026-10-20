@@ -19,12 +19,12 @@ cover:
   alt: NGN Insights, with tiles configured directly inside the product
   caption: "NGN Insights: configurable tiles built directly inside the product."
 stats:
-  - value: Faster implementation
-    label: 1+ month → ~1 week
+  - value: 3 surfaces
+    label: Supervisor web app, agent desktop app, and company setup board
   - value: Repeatable by design
     label: Custom projects → Repeatable setup
-  - value: Implementation into the product
-    label: Custom deployment → In-product configuration
+  - value: 1 month → 1 week
+    label: Faster implementation time for a new client
 blocks:
   - type: decision
     size: l

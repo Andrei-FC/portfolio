@@ -20,10 +20,10 @@ cover:
     website
   caption: Four product surfaces across iOS and web.
 stats:
+  - value: 2+ years
+    label: One designer across every surface
   - value: 4 surfaces
-    label: Golfer and Coach App, HowTo Library and Coach Website Template
-  - value: Multiple platforms
-    label: Native iOS and web, built for different audiences and contexts
+    label: Golfer app, Coach app, HowTo Library, and Coach Website Template
   - value: One ecosystem
     label: A shared visual language adapted to each environment
 blocks:
@@ -78,7 +78,7 @@ blocks:
         alt: >-
           The activity card: nine accumulated variations on one side, three shapes and three
           backgrounds on the other
-        caption: Six variations on the old side. Three shapes and three backgrounds on the new one.
+        caption: Nine variations on the old side. Three shapes and three backgrounds on the new one.
   - type: decision
     eyebrow: THE EXPANSION
     title: From web app to native

@@ -18,12 +18,12 @@ cover:
   alt: O NGN Insights, com tiles configurados direto dentro do produto
   caption: "NGN Insights: tiles configuráveis diretamente na plataforma."
 stats:
-  - value: Implementação mais rápida
-    label: 1+ mês → ~1 semana
+  - value: 3 superfícies
+    label: App web do supervisor, app desktop do agente e painel de configuração da empresa
   - value: Um sistema reutilizável
     label: Implementações personalizadas → Processo reutilizável
-  - value: Configuração dentro do produto
-    label: Implantação personalizada → Configuração na plataforma
+  - value: 1 mês → 1 semana
+    label: Tempo de implementação menor para um cliente novo
 blocks:
   - type: decision
     size: l
