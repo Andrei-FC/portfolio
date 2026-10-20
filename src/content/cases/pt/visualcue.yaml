@@ -34,6 +34,11 @@ blocks:
         Cada novo cliente exigia bastante trabalho personalizado da nossa equipe. Precisávamos criar
         os elementos visuais, preparar os dados e adaptar a solução ao ambiente de cada empresa.
         Isso encarecia a implantação e dificultava a expansão do produto.
+
+
+        Cada tile era uma ilustração, desenhada camada por camada para cada cliente, então produzir
+        um exigia alguém treinado para desenhá-lo. Do lado dos dados era igual: um desenvolvedor
+        escrevia procedimentos para cada cliente novo.
       - >-
         A ideia era trazer esse trabalho para dentro do produto. Assim, o cliente poderia configurar
         a plataforma com facilidade, sem precisar lidar diretamente com a complexidade técnica do
@@ -45,6 +50,9 @@ blocks:
       - >-
         O VisualCue apresentava dados em tiles personalizados, que combinavam ícones, cores e
         layouts. A linguagem visual era expressiva, mas difícil de reproduzir de forma consistente.
+
+
+        Eu vinha desenhando esses tiles pessoalmente desde 2013.
       - >-
         A personalização também se estendia à estrutura por trás da interface. Os dados precisavam
         ser preparados antes de chegar à plataforma, e até cálculos simples dependiam de
@@ -71,6 +79,11 @@ blocks:
         Redesenhei a linguagem visual a partir de uma estrutura consistente. Assim, o mesmo sistema
         podia ser reutilizado em diferentes projetos, mantendo cada tile adequado ao dado que
         representava.
+
+
+        O trabalho foi decidir o que fixar e o que deixar aberto. O anel, os segmentos, os cantos e
+        o centro viraram parâmetros com faixas definidas. O que um cliente podia expressar ficou
+        mais estreito, e o tile virou algo que o usuário montava sem desenhar.
     plates:
       - image: visualcue/3 From custom tiles to a repeatable visual system.jpg
         alt: O tile redesenhado sobre uma estrutura de anel consistente
@@ -89,6 +102,11 @@ blocks:
         Com a evolução do CueFit para NGN Insights, o sistema visual passou a fazer parte da própria
         plataforma. Os usuários podiam criar e configurar seus tiles sem depender de uma
         implementação feita pela equipe.
+
+
+        O editor é organizado do jeito que o tile é. Realtime, Insights, Corners, Labels e Tooltip
+        são as partes do tile na ordem em que aparecem nele, e a prévia à direita se atualiza a cada
+        escolha.
     plates:
       - image: >-
           visualcue/4 The final concept for a tile that could be configured directly inside the
@@ -102,8 +120,8 @@ blocks:
           directly in the platform.jpg
         alt: O editor de tiles, seguindo a mesma estrutura do tile
         caption: >-
-          O editor seguia a estrutura do próprio tile e oferecia campos específicos para
-          configuração, eliminando a necessidade de criar um layout novo para cada projeto.
+          O editor segue a anatomia do tile, seção por seção, com a prévia se atualizando conforme
+          cada campo é preenchido.
   - type: decision
     eyebrow: IMPLEMENTAÇÃO
     title: Simplificando a configuração dos dados
@@ -131,6 +149,11 @@ blocks:
       - >-
         No NGN Insights, os agentes passaram a acompanhar seu desempenho com mais contexto,
         informações em tempo real e feedback dentro do próprio produto.
+
+
+        O centro do tile abrigava um desenho. Quando virou um espaço configurável, passou a abrigar
+        uma fotografia. Um painel com trinta e seis agentes são trinta e seis fotos colocadas no
+        mesmo espaço.
     plates:
       - image: visualcue/9 Agent Experience.jpg
         alt: A tela do agente, com a foto no centro do tile ao lado dos dados de performance
@@ -160,3 +183,11 @@ blocks:
   - type: media
     image: visualcue/10 Final Image.png
     alt: O NGN Insights em uso, fechando o case
+  - type: decision
+    eyebrow: RESULTADO
+    title: Onde isso foi parar
+    columns:
+      - >-
+        Montar um tile deixou de depender de um ilustrador treinado e passou para os próprios
+        usuários do produto. A implementação de um cliente novo caiu de mais de um mês para pouco
+        mais de uma semana.

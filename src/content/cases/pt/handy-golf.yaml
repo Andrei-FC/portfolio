@@ -48,6 +48,40 @@ blocks:
       Enquanto eu trabalhava no design, o produto continuava evoluindo. Surgiam novas plataformas,
       públicos, funcionalidades e necessidades. O desafio era acompanhar essas mudanças sem perder a
       conexão com o que já havia sido criado.
+
+
+      Eu era o único designer do produto, e não havia processo em que me apoiar. Os planos eram
+      reescritos quase todo mês. A estrutura por baixo tinha que se sustentar, porque toda
+      superfície nova partia dela.
+  - type: decision
+    eyebrow: A REFATORAÇÃO
+    title: Parei de adicionar coisas à biblioteca
+    columns:
+      - >-
+        Depois de um ano acrescentando componentes, a biblioteca precisava de outra abordagem.
+        Tracei uma linha atravessando a página de componentes, mantive o sistema antigo de um lado —
+        porque o app no ar ainda dependia dele — e construí o novo do outro. Essa fronteira ficou de
+        pé por meses, e todo componente que a atravessava era refeito.
+
+
+        O card de atividade é um exemplo. Nove variações tinham se acumulado, cada uma com sua
+        estrutura. Refiz o componente em torno de três formas, três opções de fundo e 13
+        propriedades compartilhadas, deixando o mesmo card se adaptar a estados diferentes.
+    plates:
+      - image: >-
+          handygolf/2.1 - A 21,381-pixel divider across the components page, with OLD on one side
+          and NEW on the other..jpg
+        alt: >-
+          Uma linha atravessando a página de componentes, com o sistema antigo de um lado e o novo
+          do outro
+        caption: >-
+          Uma divisória de 21.381 pixels atravessando a página de componentes, com OLD de um lado e
+          NEW do outro.
+      - image: handygolf/2.2 Nine card types on the old side. Geometry and state on the new one..jpg
+        alt: >-
+          O card de atividade: nove variações acumuladas de um lado, três formas e três fundos do
+          outro
+        caption: Seis variações do lado antigo. Três formas e três fundos do novo.
   - type: decision
     eyebrow: EXPANSÃO
     title: Do web app ao app nativo
@@ -58,12 +92,12 @@ blocks:
     plates:
       - image: handygolf/3 App evolved to amobile experience.jpg
         alt: O app como experiência iOS nativa, com aprendizado, treino e análise de swing
-        caption: O app nativo trouxe ferramentas de treino, jogos e gravação do swing.
+        caption: O app nativo trouxe uma nova forma de navegar pelo conteúdo de aprendizado.
       - image: handygolf/4 Practice Tools built into the app.jpg
         alt: Ferramentas de treino dentro do app, ao lado do conteúdo de aprendizado existente
         caption: >-
-          As ferramentas de treino passaram a conviver com o conteúdo educacional que já fazia parte
-          do produto.
+          Gravação, jogos, analisador de swing e ferramentas de treino entraram ao lado do conteúdo
+          de aprendizado que já existia.
   - type: decision
     eyebrow: UM NOVO PÚBLICO
     title: Um espaço para os coaches dentro do produto
@@ -71,16 +105,27 @@ blocks:
       - >-
         Com o Coach App, os coaches passaram a cadastrar seus serviços — de aulas presenciais e
         análise de swing a aulas online — e definir como trabalhavam. Também podiam criar o próprio
-        site diretamente pelo app: bastava preencher as informações e escolher um tema.
+        site diretamente pelo app.
+
+
+        O app do coach roda sobre a mesma biblioteca de componentes do app do golfista. Trinta e
+        sete tokens semânticos sustentam os dois, e cinco carregam valores diferentes: três fundos e
+        duas cores de texto. Os valores de texto são ajustados para manter contraste sobre o fundo
+        mais escuro do coach.
+
+
+        O site do coach usa o mesmo mecanismo. Os modos que separam os dois apps viram seis paletas
+        em claro e escuro, e o coach escolhe uma. Ele também escolhe quais seções aparecem no site e
+        em que ordem, por um card com um olho que abre e fecha. O layout vem do sistema.
     plates:
       - image: handygolf/5 Coaches App.jpg
         alt: O Coach App, onde coaches criam e configuram os próprios serviços
         caption: >-
-          O app do coach compartilha a biblioteca de componentes do app do golfista, com cinco
-          tokens adicionais para definir sua identidade visual.
+          Cinco de trinta e sete tokens semânticos mudam de valor entre os dois apps. O resto está
+          marcado como igual.
       - image: handygolf/6 Coaches Web Template.jpg
         alt: O template de site do coach, montado a partir do conteúdo e do tema escolhidos no app
-        caption: O coach monta o próprio site escolhendo o conteúdo e o tema no app.
+        caption: As seções podem ser exibidas, ocultadas ou reordenadas de dentro do app.
   - type: decision
     eyebrow: BIBLIOTECA DE CONTEÚDO
     title: O conteúdo de aprendizado passou a fazer parte do produto
@@ -108,9 +153,7 @@ blocks:
         alt: >-
           Diagrama de dependências: as fundações alimentando uma biblioteca de app e uma de web, e
           os produtos e superfícies de marketing que descem de cada uma
-        caption: >-
-          Uma base compartilhada sustenta duas bibliotecas e as diferentes frentes de produto e
-          marketing que derivam delas.
+        caption: Uma base compartilhada sob duas bibliotecas, e as superfícies que saem delas.
       - image: handygolf/9 App system.jpg
         alt: O design system e a biblioteca de componentes mobile compartilhados pelos dois apps
         caption: >-
@@ -122,4 +165,20 @@ blocks:
           coach
         caption: >-
           O design system e a biblioteca de componentes web, compartilhados pela biblioteca de
-          conteúdo e pelo modelo de site do coach.
+          conteúdo e pelo modelo de site do coach. A escala tipográfica é idêntica nos dois
+          arquivos, item por item.
+  - type: decision
+    eyebrow: RESULTADO
+    title: O que foi ao ar, e o que não foi
+    columns:
+      - >-
+        O app do golfista está na App Store, hoje como app pago. A versão gratuita que veio antes
+        passou de cinco mil downloads. Ele reúne aulas, exercícios, jogos e a primeira versão do
+        marketplace.
+
+
+        A HowTo Library está no ar na web.
+
+
+        O app do coach e o template de site foram desenhados por inteiro e construídos em parte. Não
+        chegaram a ser lançados.

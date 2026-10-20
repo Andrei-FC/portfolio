@@ -15,12 +15,17 @@ meta:
   platforms: iOS · Web
 cover:
   image: handygolf/1 Handy Golf Ecosystem.jpg
-  alt: The four Handy Golf surfaces side by side — golfer app, coach app, content library and coach website
+  alt: >-
+    The four Handy Golf surfaces side by side — golfer app, coach app, content library and coach
+    website
   caption: Four product surfaces across iOS and web.
 stats:
-  - { value: "4 surfaces", label: "Golfer and Coach App, HowTo Library and Coach Website Template" }
-  - { value: "Multiple platforms", label: "Native iOS and web, built for different audiences and contexts" }
-  - { value: "One ecosystem", label: "A shared visual language adapted to each environment" }
+  - value: 4 surfaces
+    label: Golfer and Coach App, HowTo Library and Coach Website Template
+  - value: Multiple platforms
+    label: Native iOS and web, built for different audiences and contexts
+  - value: One ecosystem
+    label: A shared visual language adapted to each environment
 blocks:
   - type: decision
     eyebrow: THE BEGINNING
@@ -34,7 +39,6 @@ blocks:
       - image: handygolf/2 First Concepts.jpg
         alt: First concepts for the golf web app, showing lessons and series
         caption: The original web app, before practice tools, coaching, and the content library were added.
-
   - type: note
     title: Designing While It Was Moving
     text: >-
@@ -42,40 +46,83 @@ blocks:
       features, and needs kept appearing along the way, so the design had to evolve with them
       without losing sight of what was already there.
 
+
+      I was the only designer on the product, and there was no process to fall back on. Plans were
+      rewritten most months. The structure underneath had to hold, because every new surface started
+      from it.
+  - type: decision
+    eyebrow: THE REFACTOR
+    title: I stopped adding to the library
+    columns:
+      - >-
+        After one year of additions, the component library needed a different approach. I drew a
+        line across the components page, kept the old system on one side because the shipping app
+        still depended on it, and built the new one on the other. That boundary stayed in place for
+        months. Every component that crossed it was rebuilt.
+
+
+        The activity card was one example. Nine variations had accumulated, each with its own
+        structure. I rebuilt the component around three shapes, three background options, and 13
+        shared properties, allowing the same card to adapt to different states.
+    plates:
+      - image: >-
+          handygolf/2.1 - A 21,381-pixel divider across the components page, with OLD on one side
+          and NEW on the other..jpg
+        alt: >-
+          A divider drawn across the components page, with the old system on one side and the new
+          one on the other
+        caption: >-
+          A 21,381-pixel divider across the components page, with OLD on one side and NEW on the
+          other.
+      - image: handygolf/2.2 Nine card types on the old side. Geometry and state on the new one..jpg
+        alt: >-
+          The activity card: nine accumulated variations on one side, three shapes and three
+          backgrounds on the other
+        caption: Six variations on the old side. Three shapes and three backgrounds on the new one.
   - type: decision
     eyebrow: THE EXPANSION
     title: From web app to native
     columns:
       - >-
-        The web app became a native iOS experience, expanding from structured learning into
-        practice tools, games, swing analysis, and recording.
+        The web app became a native iOS experience, expanding from structured learning into practice
+        tools, games, swing analysis, and recording.
     plates:
       - image: handygolf/3 App evolved to amobile experience.jpg
         alt: The app as a native iOS experience, with learning, practice and swing analysis
-        caption: The native app introduced practice tools, games, and swing recording.
+        caption: The native app introduced a new way to explore the learning content.
       - image: handygolf/4 Practice Tools built into the app.jpg
         alt: Practice tools built into the app, alongside the existing learning content
-        caption: Practice tools were added alongside the existing learning content.
-
+        caption: >-
+          Recording, games, swing analyzer, and practice tools were added alongside the existing
+          learning content.
   - type: decision
     eyebrow: A NEW CHARACTER
     title: Coaches found a place in the product
     columns:
       - >-
-        The Coach App gave coaches a place to create their own services — from in-person lessons
-        and swing analysis to online lessons — and define how and where they worked. They could
-        also create their own website directly from the app, simply by filling in a form and
-        choosing a theme.
+        The Coach App gave coaches a place to create their own services — from in-person lessons and
+        swing analysis to online lessons — and define how and where they worked. They could also
+        create their own website directly from the app.
+
+
+        The coach app runs on the same component library as the golfer app. Thirty-seven semantic
+        tokens sit under both, and five carry a different value: three backgrounds and two text
+        colors. The text values are adjusted to hold contrast against the coach’s darker background.
+
+
+        The coach website uses the same mechanism. The modes that separate the two apps become six
+        palettes in light and dark, and the coach picks one. They also choose which sections appear
+        on the site and in what order, through a card with an eye that opens and closes. The layout
+        comes from the system.
     plates:
       - image: handygolf/5 Coaches App.jpg
         alt: The Coach App, where coaches create and configure their own services
         caption: >-
-          The coach app uses the same core component library as the golfer app, with five
-          additional tokens defining its visual layer.
+          Five of thirty-seven semantic tokens change value between the two apps. The rest are
+          marked same.
       - image: handygolf/6 Coaches Web Template.jpg
         alt: The coach website template, built from the content and theme chosen in the app
-        caption: Coaches create their website by choosing content and a theme from the app.
-
+        caption: Sections can be shown, hidden, or reordered from inside the app.
   - type: decision
     eyebrow: CONTENT LIBRARY
     title: Learning became part of the product itself
@@ -87,8 +134,9 @@ blocks:
     plates:
       - image: handygolf/7 How To Library.jpg
         alt: The HowTo Library, covering feature guidance and golf instruction
-        caption: The library covers both feature guidance and golf instruction, organized across four content types.
-
+        caption: >-
+          The library covers both feature guidance and golf instruction, organized across four
+          content types.
   - type: decision
     eyebrow: THE ECOSYSTEM
     title: How everything connects
@@ -96,15 +144,32 @@ blocks:
       - Connected surfaces, each with its own role, platform, and audience.
     plates:
       - image: handygolf/8 Ecosystem scheme.jpg
-        alt: "Dependency diagram: foundations feeding an app library and a web library, and the products and marketing surfaces downstream of each"
-        caption: >-
-          One set of foundations under two libraries, and every surface that comes off them —
-          products and marketing alike.
+        alt: >-
+          Dependency diagram: foundations feeding an app library and a web library, and the products
+          and marketing surfaces downstream of each
+        caption: One set of foundations under two libraries, and the surfaces that come off them.
       - image: handygolf/9 App system.jpg
         alt: The mobile design system and component library shared by both apps
         caption: The mobile design system and component library, shared by the golfer and coach apps.
       - image: handygolf/10 Web System.jpg
-        alt: The web design system and component library behind the content library and the coach template
+        alt: >-
+          The web design system and component library behind the content library and the coach
+          template
         caption: >-
           The web design system and component library, shared by the content library and the coach
-          website template.
+          website template. The type scale is identical in both files, item by item.
+  - type: decision
+    eyebrow: RESULT
+    title: What shipped, and what didn’t
+    columns:
+      - >-
+        The golfer app is on the App Store, now as a paid app. The free version that preceded it
+        passed five thousand downloads. It carries lessons, drills, games, and the first version of
+        the marketplace.
+
+
+        The HowTo Library is live on the web.
+
+
+        The coach app and the website template were designed in full and built in part. They haven’t
+        been released.

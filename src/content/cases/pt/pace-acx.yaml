@@ -54,13 +54,15 @@ blocks:
     title: Como contornar a restrição ao JavaScript
     columns:
       - >-
-        A plataforma não permitia executar JavaScript diretamente no estande, mas esse código era
-        essencial para fazer o EngageNow funcionar.
+        Qualquer <script> que eu colocasse no campo de texto rico saía como texto puro na página. O
+        campo escapava o código, provavelmente por segurança, e a interação do EngageNow precisava
+        de JavaScript para funcionar.
 
 
-        Então movi a lógica para fora da plataforma. Hospedei o JavaScript num servidor externo e
-        carreguei por um iframe dentro do estande, dando à interação um jeito de rodar sem mexer na
-        plataforma.
+        Então tirei a lógica de dentro do campo. O script foi para um pequeno arquivo HTML num
+        servidor externo, e o estande carregava esse arquivo por um iframe. O bloqueio parecia valer
+        só para o que o próprio campo renderizava, então uma página carregada dentro de um iframe
+        rodava normalmente.
     plates:
       - image: pace/3 - Integration Scheme.jpg
         alt: Diagrama da integração, com o JavaScript externo carregado por um iframe
@@ -83,6 +85,14 @@ blocks:
         caption: >-
           Três páginas e uma folha de estilos, funcionando dentro do campo de texto rico da
           plataforma.
+  - type: decision
+    eyebrow: O CUSTO
+    title: Contornar a plataforma teve um preço
+    columns:
+      - >-
+        O estande dependia de código escrito dentro de campos feitos para texto. Preservar esse
+        código exigia uma sequência específica na hora de salvar, e qualquer ajuste pequeno de texto
+        significava repetir o processo inteiro para garantir que tudo continuasse funcionando.
   - type: split
     eyebrow: RESULTADO
     title: Best in Show — e o único estande com interação ao vivo
