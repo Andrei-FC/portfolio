@@ -29,6 +29,14 @@ const block = z.discriminatedUnion("type", [
     // a lone one only when the block is speaking for a section.
     lede: z.boolean().optional(),
     plates: z.array(plate).default([]),
+    // A second movement of the same decision: its own heading and copy, with the
+    // plates that belong to it. It keeps the block's 24px rhythm instead of opening
+    // a new band, which is what separates two decisions.
+    parts: z.array(z.object({
+      title: z.string(),
+      columns: z.array(z.string()).max(2).default([]),
+      plates: z.array(plate).default([])
+    })).default([]),
     // Two plates can share a row when they are a comparison rather than a sequence.
     platesSideBySide: z.boolean().default(false),
     source: source.optional(),

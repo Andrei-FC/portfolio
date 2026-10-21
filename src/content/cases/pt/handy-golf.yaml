@@ -81,7 +81,7 @@ blocks:
         alt: >-
           O card de atividade: nove variações acumuladas de um lado, três formas e três fundos do
           outro
-        caption: Nove variações do lado antigo. Três formas e três fundos do novo.
+        caption: Seis variações do lado antigo. Três formas e três fundos do novo.
   - type: decision
     eyebrow: EXPANSÃO
     title: Do web app ao app nativo
@@ -112,20 +112,44 @@ blocks:
         sete tokens semânticos sustentam os dois, e cinco carregam valores diferentes: três fundos e
         duas cores de texto. Os valores de texto são ajustados para manter contraste sobre o fundo
         mais escuro do coach.
-
-
-        O site do coach usa o mesmo mecanismo. Os modos que separam os dois apps viram seis paletas
-        em claro e escuro, e o coach escolhe uma. Ele também escolhe quais seções aparecem no site e
-        em que ordem, por um card com um olho que abre e fecha. O layout vem do sistema.
     plates:
       - image: handygolf/5 Coaches App.jpg
         alt: O Coach App, onde coaches criam e configuram os próprios serviços
         caption: >-
           Cinco de trinta e sete tokens semânticos mudam de valor entre os dois apps. O resto está
           marcado como igual.
-      - image: handygolf/6 Coaches Web Template.jpg
-        alt: O template de site do coach, montado a partir do conteúdo e do tema escolhidos no app
-        caption: As seções podem ser exibidas, ocultadas ou reordenadas de dentro do app.
+    parts:
+      - title: Um site montado a partir de peças conectadas
+        columns:
+          - >-
+            Desenhei três fluxos interligados dentro do Coach App: Coach Profile, Services e Website
+            Management.
+
+
+            Cada um tem um propósito distinto. O Coach Profile dá ao coach uma presença pública no
+            app do golfista e, ao mesmo tempo, alimenta o site com informação. O Services deixa o
+            coach administrar suas ofertas no marketplace do Handy Golf e escolher quais publicar no
+            site.
+
+
+            O Website Management junta essas peças, permitindo que o coach dê forma ao site sem
+            duplicar conteúdo. Quando alguma informação precisa mudar, atalhos contextuais levam
+            direto ao fluxo onde ela é administrada.
+
+
+            Cada fluxo funciona por conta própria, mas juntos formam um sistema conectado.
+        plates:
+          - image: handygolf/6 Coaches Web Template.jpg
+            alt: >-
+              O template de site do coach, montado a partir do conteúdo e do tema escolhidos no app
+            caption: >-
+              Processo de montagem do site dentro do app, sem exigir conhecimento de design ou
+              habilidades especiais
+          - image: handygolf/6.1 Website management flows.jpg
+            alt: >-
+              Dois diagramas: os três fluxos do coach app convergindo no site, e o processo de
+              gerenciamento do site, do painel até a publicação
+            caption: Fluxos de gerenciamento do site
   - type: decision
     eyebrow: BIBLIOTECA DE CONTEÚDO
     title: O conteúdo de aprendizado passou a fazer parte do produto
@@ -146,8 +170,7 @@ blocks:
     title: Como tudo se conecta
     columns:
       - >-
-        Cada frente tem seu papel, sua plataforma e seu público, mas todas fazem parte do mesmo
-        ecossistema.
+        Quatro frentes conectadas, cada uma com seu papel, sua plataforma e seu público.
     plates:
       - image: handygolf/8 Ecosystem scheme.jpg
         alt: >-

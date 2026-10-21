@@ -78,7 +78,7 @@ blocks:
         alt: >-
           The activity card: nine accumulated variations on one side, three shapes and three
           backgrounds on the other
-        caption: Nine variations on the old side. Three shapes and three backgrounds on the new one.
+        caption: Six variations on the old side. Three shapes and three backgrounds on the new one.
   - type: decision
     eyebrow: THE EXPANSION
     title: From web app to native
@@ -108,21 +108,44 @@ blocks:
         The coach app runs on the same component library as the golfer app. Thirty-seven semantic
         tokens sit under both, and five carry a different value: three backgrounds and two text
         colors. The text values are adjusted to hold contrast against the coach’s darker background.
-
-
-        The coach website uses the same mechanism. The modes that separate the two apps become six
-        palettes in light and dark, and the coach picks one. They also choose which sections appear
-        on the site and in what order, through a card with an eye that opens and closes. The layout
-        comes from the system.
     plates:
       - image: handygolf/5 Coaches App.jpg
         alt: The Coach App, where coaches create and configure their own services
         caption: >-
           Five of thirty-seven semantic tokens change value between the two apps. The rest are
           marked same.
-      - image: handygolf/6 Coaches Web Template.jpg
-        alt: The coach website template, built from the content and theme chosen in the app
-        caption: Sections can be shown, hidden, or reordered from inside the app.
+    parts:
+      - title: A site built from connected pieces
+        columns:
+          - >-
+            I designed three interconnected flows within the Coach App: Coach Profile, Services, and
+            Website Management.
+
+
+            Each serves a distinct purpose. Coach Profile gives coaches a public presence in the
+            Golfer App while also providing information for their websites. Services lets coaches
+            manage their offerings for the Handy Golf marketplace and choose which ones to publish
+            on their websites.
+
+
+            Website Management brings these pieces together, allowing coaches to shape their
+            websites without duplicating content. When information needs updating, contextual
+            shortcuts take them directly to the flow where it’s managed.
+
+
+            Each flow works independently, but together they form a connected system.
+        plates:
+          - image: handygolf/6 Coaches Web Template.jpg
+            alt: >-
+              The coach website template, built from the content and theme chosen in the app
+            caption: >-
+              Website assembly process inside the app, no design knowledge or special skills to
+              build
+          - image: handygolf/6.1 Website management flows.jpg
+            alt: >-
+              Two diagrams: the coach app’s three flows converging on the website, and the website
+              management process from dashboard to published site
+            caption: Website management flows
   - type: decision
     eyebrow: CONTENT LIBRARY
     title: Learning became part of the product itself
@@ -141,7 +164,7 @@ blocks:
     eyebrow: THE ECOSYSTEM
     title: How everything connects
     columns:
-      - Connected surfaces, each with its own role, platform, and audience.
+      - Four connected surfaces, each with its own role, platform, and audience.
     plates:
       - image: handygolf/8 Ecosystem scheme.jpg
         alt: >-

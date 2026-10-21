@@ -170,6 +170,32 @@ for (const block of d.blocks) {
             </div>
           )}
 
+          <!-- A further movement of the same decision: it sits in this stack, so it
+               keeps the 24px step rather than opening a band of its own. -->
+          {block.parts.map((part) => (
+            <Fragment>
+              <h3 class="t-heading-m lede-measure">{part.title}</h3>
+              {part.columns.length > 0 && (
+                <div class="grid">
+                  <div class="read stacked">
+                    {part.columns.map((column) => (
+                      <div class="stack stack--text">
+                        {column.split(/\n\s*\n/).map((para) => (
+                          <p class="t-body-l muted">{para}</p>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {part.plates.length > 0 && (
+                <div class="plates">
+                  {part.plates.map((p) => <Plate locale={locale} {...p} />)}
+                </div>
+              )}
+            </Fragment>
+          ))}
+
           {block.source && (
             <div class="case-source stack stack--tight">
               <span class="t-label eyebrow">{tr("case.source")}</span>
