@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import Base from "../../layouts/Base.astro";
 import ProjectCard from "../ProjectCard.astro";
 import portrait from "../../assets/andrei-about.jpg";
+import danHandy from "../../assets/dan-handy.png";
 import { CV_PATH, SHOW_CV } from "../../config";
 import { t, type Locale } from "../../i18n/ui";
 
@@ -36,9 +37,12 @@ const copy = {
     howBody: "I start by understanding how something works today and why it works that way. I look at the whole process around what I'm designing, not just the part in front of me. From there, I work within the realities of the business, making trade-offs and refining the direction until it is the best solution the situation allows — and one that can actually be implemented.",
     proof: "Two of my last three positions came from people who had worked with me before and came back for me years later",
     proofLines: [
-      "The Brazilian partner at VisualCue brought me in from a company where we had worked together.",
+      "The Brazilian partner at VisualCue brought me in after QI Solution.",
       "The CEO of Handy Golf brought me in after VisualCue in the US."
     ],
+    testimonial: "“I am pleased to offer my highest recommendation for Andrei. I have had the privilege of working with him at two companies, VisualCue and Handy Golf, where he has served in key design roles, including as our Chief Designer. Having worked with many talented designers throughout my career, I can say without hesitation that Andrei is the best designer I have ever worked with.”",
+    testimonialAlt: "Dan Handy",
+    testimonialBy: ["Dan Handy", "Founder & CEO, Handy Golf", "Former CEO, Bluehost"],
     trajectory: "Trajectory",
     practical: "Practical",
     facts: [
@@ -69,9 +73,12 @@ const copy = {
     howBody: "Primeiro, procuro entender como algo funciona hoje e por quê. Considero o processo como um todo, não apenas a parte que estou desenhando. Depois, levo em conta as necessidades do negócio, avalio os compromissos envolvidos e ajusto a direção até chegar à melhor solução possível — um design que de fato possa ser implementado na prática.",
     proof: "Duas das minhas três últimas oportunidades vieram de pessoas que já haviam trabalhado comigo e voltaram a me procurar anos depois.",
     proofLines: [
-      "O sócio brasileiro da VisualCue me convidou para trabalhar com ele depois de termos trabalhado juntos em outra empresa.",
+      "O sócio brasileiro da VisualCue me convidou depois da QI Solution.",
       "Anos depois, o CEO da Handy Golf me procurou após termos trabalhado juntos na VisualCue, nos Estados Unidos."
     ],
+    testimonial: "“Tenho a satisfação de oferecer minha mais alta recomendação ao Andrei. Tive o privilégio de trabalhar com ele em duas empresas, VisualCue e Handy Golf, onde ocupou posições-chave de design, inclusive a de Chief Designer. Tendo trabalhado com muitos designers talentosos ao longo da minha carreira, posso dizer sem hesitar que o Andrei é o melhor designer com quem já trabalhei.”",
+    testimonialAlt: "Dan Handy",
+    testimonialBy: ["Dan Handy", "Fundador e CEO, Handy Golf", "Ex-CEO, Bluehost"],
     trajectory: "Trajetória",
     practical: "Prático",
     facts: [
@@ -122,11 +129,22 @@ const copy = {
   </section>
 
   <section class="band inverse">
-    <div class="container stack stack--element">
-      <p class="t-display-l about-proof">{copy.proof}</p>
-      <p class="t-body-m muted">
-        {copy.proofLines.map((line) => <span class="own-line">{line}</span>)}
-      </p>
+    <div class="container stack stack--group">
+      <div class="stack stack--element">
+        <p class="t-display-l about-proof">{copy.proof}</p>
+        <p class="t-body-m muted">
+          {copy.proofLines.map((line) => <span class="own-line">{line}</span>)}
+        </p>
+      </div>
+      <figure class="testimonial stack stack--element">
+        <blockquote class="t-body-l">{copy.testimonial}</blockquote>
+        <figcaption class="testimonial__by">
+          <Image class="testimonial__avatar" src={danHandy} alt={copy.testimonialAlt} widths={[80, 160]} sizes="80px" />
+          <span class="t-body-m">
+            {copy.testimonialBy.map((line) => <span class="own-line">{line}</span>)}
+          </span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -210,6 +228,11 @@ const copy = {
   .about-col, .about-beyond { max-width: 624px; }
   /* 8 columns, like a case title. */
   .about-proof { max-width: 840px; }
+  /* The quote keeps the same 8-column measure the claim above it uses. */
+  .testimonial { max-width: 840px; margin: 0; }
+  .testimonial blockquote { margin: 0; }
+  .testimonial__by { display: flex; align-items: center; gap: var(--space-element); }
+  .testimonial__avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
   /* Breaks that are editorial, not a consequence of the measure: these lines
      start fresh at every width. */
   .own-line { display: block; }
